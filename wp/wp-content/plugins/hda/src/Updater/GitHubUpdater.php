@@ -72,7 +72,7 @@ class GitHubUpdater {
 	 * This is hardcoded here — NOT loaded from .env or wp-config.php.
 	 * The plugin manages its own token independently.
 	 */
-	private const string GITHUB_TOKEN = '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';
+	private const string GITHUB_TOKEN = '';
 
 	// --------------------------------------------------
 
