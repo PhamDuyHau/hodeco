@@ -8,10 +8,10 @@ if (! $acf_fc_layout) {
 }
 
 $heading_title = $args['heading_title'] ?? '';
-$sub_title     = $args['sub_title'] ?? '';
-$bg_img        = $args['bg_img'] ?? '';
-$bg_img_1      = $args['bg_img_1'] ?? '';
-$re_pro        = $args['re_pro'] ?? [];
+$sub_title      = $args['sub_title'] ?? '';
+$bg_img         = $args['bg_img'] ?? '';
+$bg_img_1       = $args['bg_img_1'] ?? '';
+$re_pro         = $args['re_pro'] ?? [];
 ?>
 
 <section class="section home-project relative pb-10">
@@ -34,20 +34,22 @@ $re_pro        = $args['re_pro'] ?? [];
 
     <div class="container mx-auto px-8 lg:px-16 xl:px-24">
 
-        <?php if ($sub_title) : ?>
-            <div class="mt-4 flex justify-center">
-                <h3 class="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-[#808080] font-medium text-[16px] leading-[24px] text-black">
-                    <span class="w-2.5 h-2.5 bg-secondary rounded-full shrink-0"></span>
-                    <span class="capitalize"><?php echo esc_html($sub_title); ?></span>
-                </h3>
-            </div>
-        <?php endif; ?>
+        <?php
+        if ($sub_title) {
+            echo '<div class="mt-4 flex justify-center">';
+            echo '<h3 class="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-[#808080] font-medium text-[16px] leading-[24px] text-black">';
+            echo '<span class="w-2.5 h-2.5 bg-secondary rounded-full shrink-0"></span>';
+            echo '<span class="capitalize">' . $sub_title . '</span>';
+            echo '</h3>';
+            echo '</div>';
+        }
 
-        <?php if ($heading_title) : ?>
-            <h2 class="text-[32px] lg:text-[44px] font-semibold text-[#333333] text-center mt-4">
-                <?php echo esc_html($heading_title); ?>
-            </h2>
-        <?php endif; ?>
+        if ($heading_title) {
+            echo '<h2 class="text-[32px] lg:text-[44px] font-semibold text-[#333333] text-center mt-4">';
+            echo $heading_title;
+            echo '</h2>';
+        }
+        ?>
 
         <?php if (! empty($re_pro)) : ?>
             <div class="mt-12 space-y-10">
@@ -82,7 +84,7 @@ $re_pro        = $args['re_pro'] ?? [];
                                                 <div class="relative z-10 flex flex-col h-full pt-10">
                                                     <?php if ($title) : ?>
                                                         <h3 class="text-xl lg:text-2xl font-semibold mb-3 pr-16 lg:pr-24 text-[#333333] leading-snug">
-                                                            <?php echo esc_html($title); ?>
+                                                            <?php echo $title; ?>
                                                         </h3>
                                                     <?php endif; ?>
 
@@ -104,7 +106,7 @@ $re_pro        = $args['re_pro'] ?? [];
                                                 <div class="relative z-10 flex flex-col h-full pt-10">
                                                     <?php if ($title) : ?>
                                                         <h3 class="text-xl lg:text-2xl font-semibold mb-3 pr-16 lg:pr-24 text-white leading-snug">
-                                                            <?php echo esc_html($title); ?>
+                                                            <?php echo $title; ?>
                                                         </h3>
                                                     <?php endif; ?>
 

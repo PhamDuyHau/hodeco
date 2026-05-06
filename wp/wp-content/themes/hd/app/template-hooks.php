@@ -144,24 +144,23 @@ function hd_construct_off_canvas(): void
 add_action('construct_footer', '_construct_footer_credit', 12);
 function _construct_footer_credit(): void {
     ?>
-        <div class="footer-credit py-8 border-t border-white/10 relative z-10">
-            <div class="u-container flex flex-wrap items-center justify-between gap-4">
+        <div class="footer-credit py-8 relative">
+            <div class="u-container flex flex-col items-center justify-center gap-4 text-center">
                 <?php
-                echo '<div class="footer-copyright text-sm text-white/70">';
+                echo '<div class="footer-copyright text-sm text-white">';
                 $copyright = sprintf(
                     '<span class="copyright">&copy; %1$s %2$s,&nbsp;</span><span class="hd">%3$s <a class="hover:text-white transition-colors" title="%6$s" href="%4$s" %5$s>%6$s</a></span>',
                     date('Y'),
                     get_bloginfo('name'),
                     __('design by', TEXT_DOMAIN),
-                    esc_url('https://webhd.vn/'),
+                    'https://webhd.vn/',
                     HD\Utilities\Helper::microdata('url'),
                     __('HD Agency', TEXT_DOMAIN)
                 );
                 echo apply_filters('hd_copyright', $copyright);
                 echo '</div>';
-
                 if ( is_active_sidebar( 'social-menu-sidebar' ) ) :
-                    echo '<div class="social-menu-sidebar text-white/70">';
+                    echo '<div class="social-menu-sidebar text-white flex justify-center">';
                     dynamic_sidebar( 'social-menu-sidebar' );
                     echo '</div>';
                 endif;
@@ -190,8 +189,8 @@ function _construct_footer_columns(): void
          class="footer-main-wrap bg-primary text-white bg-cover bg-center bg-no-repeat relative"
          style="background-image: url('<?php echo esc_url($footer_bg); ?>');">
         
-        <div class="u-container pt-16 relative z-10">
-			<div class="footer-brand-overlay mb-10 lg:mb-16 text-center overflow-hidden">
+        <div class="u-container pt-16 relative">
+			<div class="footer-brand-overlay text-center overflow-hidden">
 				<span class="text-[12vw] font-semibold uppercase tracking-widest text-transparent block leading-none select-none"
 					style="-webkit-text-stroke: 1px rgba(255,255,255,0.2); font-size: clamp(40px, 15vw, 220px);">
 					<?php echo esc_html($company_title); ?>
@@ -199,7 +198,7 @@ function _construct_footer_columns(): void
 			</div>
 
             <?php if (have_rows($re_address, 'option')) : ?>
-                <div class="footer-address-container p-8 md:p-12 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm relative mb-16">
+                <div class="footer-address-container p-8 md:p-12 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm relative">
                     <div class="footer-address-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 md:gap-x-12">
                         <?php
                         $rows = get_field($re_address, 'option');
@@ -251,39 +250,7 @@ function _construct_footer_columns(): void
 add_action('construct_footer', '_construct_footer_custom', 98);
 function _construct_footer_custom(): void
 {
-	$popup_advise = Helper::getField('popup_advise', 'option');
-	$popup_quote  = Helper::getField('popup_quote', 'option');
-?>
-	<div class="popup-content rounded-lg !bg-[#F6F2EA] hidden" id="popup-advise">
-		<div class="inner">
-			<div class="inner-content text-center mb-3">
-				<p class="text-[var(--color-title)] font-semibold text-xl capitalize xl:text-2xl mb-2">
-					<?php echo __('Gửi yêu cầu tư vấn', TEXT_DOMAIN); ?></p>
-				<div class="">
-					<?php echo __('Vui lòng để lại thông tin, chúng tôi sẽ liên hệ tư vấn trong thời gian sớm nhất!', TEXT_DOMAIN); ?>
-				</div>
-			</div>
-			<?php
-			echo do_shortcode('[contact-form-7 id="' . esc_attr($popup_advise) . '"]');
-			?>
-		</div>
-	</div>
-
-	<div class="popup-content rounded-lg !bg-[#F6F2EA] hidden" id="popup-quote">
-		<div class="inner">
-			<div class="inner-content text-center mb-3">
-				<p class="text-[var(--color-title)] font-semibold text-xl capitalize xl:text-2xl mb-2">
-					<?php echo __('Gửi yêu cầu báo giá', TEXT_DOMAIN); ?></p>
-				<div class="">
-					<?php echo __('Vui lòng để lại thông tin, chúng tôi sẽ liên hệ tư vấn trong thời gian sớm nhất!', TEXT_DOMAIN); ?>
-				</div>
-			</div>
-			<?php
-			echo do_shortcode('[contact-form-7 id="' . esc_attr($popup_quote) . '"]');
-			?>
-		</div>
-	</div>
-<?php
+	
 }
 
 add_action('wp_footer', 'back_to_top', 32);

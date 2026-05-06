@@ -64,18 +64,20 @@ $navigation    = $args['navigation'] ?? false;
                                 <?php endif; ?>
                             </div>
                             <div class="col-right flex-1 mb-3 ml-0 xl:ml-10 order-2 xl:order-3 w-full flex flex-col items-center xl:items-start text-center xl:text-left relative">
-                                <?php if ($sub_title) : ?>
-                                    <div class="sub-title w-fit flex flex-wrap gap-2 mb-4 items-center bg-white/30 text-[#412F07] text-[18px] lg:text-[24px] font-semibold rounded-lg p-[8px_16px]">
-                                        <img src="<?php echo THEME_URL; ?>resources/img/ic-law.png" class="w-10 h-10 max-sm:w-8 max-sm:h-8 object-contain" alt="icon">
-                                        <span><?php echo esc_html($sub_title); ?></span>
-                                    </div>
-                                <?php endif; ?>
+   <?php
+                                if ($sub_title) {
+                                    echo '<div class="sub-title w-fit flex flex-wrap gap-2 mb-4 items-center bg-white/30 text-[#412F07] text-[18px] lg:text-[24px] font-semibold rounded-lg p-[8px_16px]">';
+                                    echo '<img src="' . THEME_URL . 'resources/img/ic-law.png" class="w-10 h-10 max-sm:w-8 max-sm:h-8 object-contain" alt="icon">';
+                                    echo '<span>' . $sub_title . '</span>';
+                                    echo '</div>';
+                                }
 
-                                <?php if ($heading_title) : ?>
-                                    <p class="title font-header text-white text-[24px] 2xl:text-[40px] xl:text-[30px] font-medium leading-snug mb-10">
-                                        <?php echo esc_html($heading_title); ?>
-                                    </p>
-                                <?php endif; ?>
+                                if ($heading_title) {
+                                    echo '<p class="title font-header text-white text-[24px] 2xl:text-[40px] xl:text-[30px] font-medium leading-snug mb-10">'
+                                        . $heading_title .
+                                        '</p>';
+                                }
+                                ?>
 
                                 <div class="arrow-animate absolute top-[48%] -translate-y-[48%] left-0 md:left-[15%] lg:left-[28%] xl:left-[-5%]">
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/banner-arrow.png"
