@@ -587,25 +587,6 @@ img[src=""] {
   display: inline-block;
   margin-top: 4px;
 }
-.home-slider .swiper-wrapper .swiper-slide .wrapper .col-right {
-  position: relative;
-}
-.home-slider .swiper-wrapper .swiper-slide .wrapper .col-right .arrow-animate {
-  position: absolute;
-  top: 48%;
-  left: -3%;
-  transform: translateY(-48%);
-}
-@media only screen and (max-width: 79.99875rem) {
-  .home-slider .swiper-wrapper .swiper-slide .wrapper .col-right .arrow-animate {
-    left: 28%;
-  }
-}
-@media only screen and (max-width: 63.99875rem) {
-  .home-slider .swiper-wrapper .swiper-slide .wrapper .col-right .arrow-animate {
-    left: 0%;
-  }
-}
 
 .home-number .wrapper .item:last-child::before {
   content: none;

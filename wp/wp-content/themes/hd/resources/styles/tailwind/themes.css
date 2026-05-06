@@ -26,7 +26,7 @@
 	/* Colors - Primary & Secondary (Tailwind 4 namespace) */
 	/* Usage: .text-primary, .bg-primary, .border-primary, etc. */
 	--color-primary: #0E4087;
-	--color-secondary: #0E4087;
+	--color-secondary: #EC2127;
 	--color-background: linear-gradient(180deg, #FBF7EE 0%, #FFFFFF 100%);
 	--color-title: #362705;
 	--color-body: #534D41;

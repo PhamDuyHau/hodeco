@@ -123,22 +123,7 @@
 						margin-top: 4px;
 					}
 				}
-				.col-right {
-					position: relative;
-					.arrow-animate {
-						position: absolute;
-						top: 48%;
-						left: -3%;
-						transform: translateY(-48%);
-						@include mixin.mq-max(xl) {
-							left: 28%;
-						}
-
-						@include mixin.mq-max(lg) {
-							left: 0%;
-						}
-					}
-				}
+				
 			}
 		}
 	}
