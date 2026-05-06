@@ -1,0 +1,66 @@
+{
+    "name": "wp-cli/site-health-command",
+    "type": "wp-cli-package",
+    "description": "",
+    "homepage": "https://github.com/wp-cli/site-health-command",
+    "license": "MIT",
+    "authors": [],
+    "require": {
+        "wp-cli/wp-cli": "^2.11"
+    },
+    "require-dev": {
+        "wp-cli/wp-cli-tests": "^5"
+    },
+    "config": {
+        "process-timeout": 7200,
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        },
+        "lock": false
+    },
+    "extra": {
+        "branch-alias": {
+          "dev-main": "1.x-dev"
+        },
+        "bundled": true,
+        "commands": [
+            "site-health",
+            "site-health check",
+            "site-health info",
+            "site-health list-info-sections",
+            "site-health status"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "WP_CLI\\SiteHealth\\": "src/"
+        },
+        "files": [
+            "site-health-command.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "behat": "run-behat-tests",
+        "behat-rerun": "rerun-behat-tests",
+        "lint": "run-linter-tests",
+        "phpcs": "run-phpcs-tests",
+        "phpstan": "run-phpstan-tests",
+        "phpcbf": "run-phpcbf-cleanup",
+        "phpunit": "run-php-unit-tests",
+        "prepare-tests": "install-package-tests",
+        "test": [
+            "@lint",
+            "@phpcs",
+            "@phpstan",
+            "@phpunit",
+            "@behat"
+        ]
+    },
+    "support": {
+        "issues": "https://github.com/wp-cli/site-health-command/issues"
+    }
+}

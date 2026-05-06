@@ -1,0 +1,211 @@
+/* single.scss */
+/* Single specific styles */
+
+@use 'utils/variables' as vars;
+@use 'utils/functions' as func;
+@use 'utils/mixins' as mixin;
+@use 'partials';
+
+// ============================================================================
+// SINGLE
+.single-post {
+	.section-breadcrumb {
+		.breadcrumb-title {
+			@include mixin.mq-max(sm) {
+				display: none;
+			}
+		}
+	}
+	.col-content {
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: vars.$font-body;
+			font-weight: 500;
+			color: vars.$color-title;
+			margin-bottom: 16px;
+		}
+		h2 {
+			@include mixin.clamp-font-size(22px, 26px);
+		}
+		h3 {
+			@include mixin.clamp-font-size(20px, 22px);
+		}
+		h4 {
+			@include mixin.clamp-font-size(18px, 20px);
+		}
+		h5 {
+			@include mixin.clamp-font-size(16px, 18px);
+		}
+		h6 {
+			@include mixin.clamp-font-size(14px, 16px);
+		}
+		ol,
+		ul {
+			list-style: revert;
+			padding-left: 20px;
+			margin-bottom: 16px;
+			li {
+				margin-bottom: 5px;
+				&:last-child {
+					margin-bottom: 0;
+				}
+				ul,
+				ol {
+					margin-top: 5px;
+					margin-bottom: 0;
+				}
+			}
+		}
+		._meta {
+			.share-actions {
+				padding-left: 0;
+			}
+		}
+		.hashtag-links {
+			a {
+				background-color: #f6f6f6;
+				padding: 6px 12px;
+				border-radius: 4px;
+				color: #243f40;
+				transform: translateY(0);
+				&::before {
+					content: '#';
+				}
+				&:hover {
+					transform: translateY(-2px);
+					transition: all 0.3s;
+				}
+			}
+		}
+		.sc-fixed-info {
+			margin-top: 25px;
+			margin-bottom: 30px;
+			.site-logo .logo img {
+				max-width: 400px;
+			}
+		}
+		.wp-comments-area.comments-area {
+			.fs-16.medium.block {
+				font-weight: 700;
+				color: #000914;
+			}
+			.comment-respond {
+				.comment-reply-title,
+				._label_title,
+				.comment-notes {
+					display: none;
+				}
+				form {
+					display: flex;
+					flex-flow: row wrap;
+					justify-content: space-between;
+					.comment-form-comment,
+					.form-submit {
+						flex: 0 0 100%;
+						max-width: 100%;
+					}
+					.comment-form-author,
+					.comment-form-email {
+						flex: 0 0 49%;
+						max-width: 49%;
+						@include mixin.mq-max(md) {
+							width: 100%;
+							flex: 0 0 100%;
+							max-width: 100%;
+						}
+					}
+					textarea {
+					}
+					input#author,
+					input#email {
+						font-style: italic;
+						padding-left: 12px;
+						padding-right: 12px;
+						background: #f6f6f6;
+						border-radius: 8px;
+						width: 100%;
+						border: unset;
+						height: 45px;
+						-webkit-text-fill-color: vars.$color-body !important;
+					}
+					.form-submit {
+						button {
+							padding: 10px 20px;
+							border: unset;
+							box-shadow: unset;
+							border-radius: 8px;
+							background: vars.$color-primary;
+							color: vars.$white;
+							font-weight: 600;
+							transition: 0.4s;
+							&:hover {
+								transform: translateY(-2px);
+							}
+						}
+					}
+				}
+			}
+			.comment-list {
+				list-style: none;
+				margin: 0;
+				padding-top: 15px;
+				.comment {
+					.comment-body {
+						display: flex;
+						align-items: center;
+						flex-flow: row wrap;
+						.comment-meta {
+							flex: 0 0 100%;
+							max-width: 100%;
+							margin-bottom: 10px;
+							display: flex;
+							align-items: center;
+							gap: 10px;
+							.comment-avatar {
+								border-radius: 100%;
+								overflow: hidden;
+								img {
+								}
+							}
+							.comment-info {
+								span {
+									display: block;
+								}
+								.comment-author {
+									text-transform: capitalize;
+									font-weight: 600;
+									color: #000914;
+								}
+								.comment-date {
+								}
+							}
+						}
+						.comment-content {
+							flex: 0 0 100%;
+							max-width: 100%;
+						}
+						.comment-awaiting-moderation {
+							flex: 0 0 100%;
+							max-width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+#ez-toc-container {
+	width: 100%;
+}
+.author-social {
+	li {
+		svg {
+			fill: #d79e25 !important;
+			@include mixin.box(18);
+		}
+	}
+}
+// ============================================================================

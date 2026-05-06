@@ -1,0 +1,120 @@
+@use '../utils/variables' as vars;
+@use '../utils/mixins' as mixin;
+
+// General base styles, utilities, and spacing.
+
+:is(.screen-reader-text, .submenu-toggle-text, .hidden-text, .sr-only) {
+	@include mixin.hidden-text();
+}
+
+.help-text {
+	display: block;
+	margin-top: 5px;
+}
+
+.flex {
+	display: flex;
+}
+
+:is(.\!flex, .flex\!) {
+	display: flex !important;
+}
+
+:is(.hide, .hidden) {
+	display: none;
+}
+
+:is(.\!hide, .\!hidden, .hidden\!, .hide\!) {
+	display: none !important;
+}
+
+:is(input, textarea, select) {
+	&:disabled {
+		cursor: not-allowed !important;
+	}
+}
+
+:is(.ajax-loader, .ajax-loading) {
+	@include mixin.animation-loading(14px, #2271b1, #f3f3f3);
+}
+
+:is(.ajax-loader2, .ajax-loading2) {
+	@include mixin.animation-loading(30px, #2271b1, #f3f3f3, 3px, rgb(0 0 0 / 20%));
+}
+
+:is(.grid-gap, .flex-gap, .gap) {
+	gap: 12px;
+
+	@include mixin.mq-min-width(vars.$md) {
+		gap: 24px;
+	}
+}
+
+.flex-x {
+	flex-flow: row wrap;
+}
+
+.flex-y {
+	flex-flow: column nowrap;
+}
+
+.cell {
+	flex: 0 0 auto;
+	max-width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+.spinner2 {
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.tips {
+	cursor: help;
+	text-decoration: none;
+}
+
+.p {
+	font-size: 13px;
+	line-height: 1.5;
+	margin: 1em 0;
+}
+
+.postform-checkbox {
+	max-height: 75px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: #eeeeee;
+	padding: 10px;
+	width: calc(100% - 20px);
+}
+
+.row-actions {
+	.action_id {
+		color: #999999;
+	}
+}
+
+//
+// spacing
+//
+.mt-6 {
+	margin-top: 24px;
+}
+
+.mt-8 {
+	margin-top: 32px;
+}
+
+.mb-6\! {
+	margin-bottom: 24px !important;
+}

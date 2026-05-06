@@ -1,0 +1,974 @@
+@charset "UTF-8";
+/**
+ * HDA Settings Page Styles
+ *
+ * Entry point — imports partials from settings/
+ */
+.hda_page_hda-server-info #wpcontent {
+  padding-left: 0;
+}
+.hda_page_hda-server-info .notice {
+  margin: 25px 20px 15px 22px;
+}
+.hda_page_hda-server-info .notice ~ .notice {
+  margin-top: 5px;
+}
+
+.server-info-body {
+  max-width: 100%;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 25px 20px 15px 22px;
+}
+.server-info-body .server-info-inner {
+  background: #ffffff;
+  padding: 1em 1.5em;
+  border: 1px solid #c3c4c7;
+}
+.server-info-body .server-info-inner ul li {
+  color: #2c3338;
+}
+.server-info-body .server-info-inner ul li > span:first-child {
+  font-weight: 700;
+}
+
+.toplevel_page_hda-settings #wpbody-content .notice {
+  margin-left: 2px;
+}
+.toplevel_page_hda-settings .notice {
+  position: absolute !important;
+  visibility: hidden;
+  transition: 0.3s;
+}
+.toplevel_page_hda-settings #_content .notice {
+  position: relative !important;
+  visibility: visible;
+}
+
+#_container {
+  margin: 0;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+}
+#_container #main {
+  display: table;
+  vertical-align: top;
+  margin-left: -20px;
+}
+
+#_settings_form #_nav {
+  display: table-cell;
+  z-index: 99;
+  min-width: 200px;
+  max-width: 200px;
+  vertical-align: top;
+}
+@media screen and (min-width: 64rem) {
+  #_settings_form #_nav {
+    min-width: 260px;
+    max-width: 260px;
+  }
+}
+#_settings_form #_nav .logo-title {
+  padding: 10px 20px;
+  display: block;
+}
+#_settings_form #_nav .logo-title h3 {
+  font-weight: 700;
+}
+#_settings_form #_nav .logo-title h3 span {
+  font-size: 80%;
+  opacity: 0.6;
+  display: block;
+  margin-top: 4px;
+  font-weight: 400;
+}
+#_settings_form #_nav .save-bar {
+  padding: 0 20px;
+  margin-bottom: 20px;
+  display: block;
+}
+#_settings_form #_nav .save-bar button[type=submit] {
+  height: 34px;
+  width: 160px;
+  max-width: 100%;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+#_settings_form #_nav .save-bar button[type=submit]:hover:not([disabled]) {
+  box-shadow: 0 3px 10px rgba(34, 113, 177, 0.4);
+  transform: translateY(-1px);
+}
+#_settings_form #_nav .save-bar button[type=submit]:active:not([disabled]) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+#_settings_form #_nav .save-bar button[type=submit] i {
+  font-size: 16px;
+}
+#_settings_form #_nav .save-bar button[type=submit] svg {
+  width: 1rem;
+  height: 1rem;
+}
+#_settings_form #_nav .save-bar button[type=submit][disabled] {
+  background: #2271b1 !important;
+  border-color: #2271b1 !important;
+  color: #ffffff !important;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+#_settings_form #_nav ul {
+  margin: 0;
+}
+#_settings_form #_nav ul li {
+  margin: 0;
+  padding: 0;
+}
+#_settings_form #_nav ul li a {
+  color: #666666;
+  text-decoration: none;
+  padding: 10px 30px 10px 20px;
+  display: block;
+  border-bottom: 1px solid #dddddd;
+  font-weight: bold;
+  font-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 90% 50%;
+  transition: all 0.3s;
+}
+#_settings_form #_nav ul li a:hover {
+  color: #000000;
+  background-color: #ffffff;
+  margin-right: -1px;
+  position: relative;
+}
+#_settings_form #_nav ul li a.current {
+  color: #000000;
+  background-color: #ffffff;
+  margin-right: -1px;
+  position: relative;
+  box-shadow: inset 3px 0 0 #2271b1;
+}
+
+#_settings_form #_content {
+  border-left: 1px solid #dddddd;
+  display: table-cell;
+  min-height: 100%;
+  background-color: #ffffff;
+  padding: 32px;
+  width: 100%;
+}
+@media screen and (min-width: 64rem) {
+  #_settings_form #_content {
+    padding: 32px 40px;
+  }
+}
+#_settings_form #_content .group:not(.show) {
+  display: none;
+}
+#_settings_form #_content .group h2 {
+  margin-top: 30px;
+  font-weight: 700;
+}
+#_settings_form #_content .group h2 + .desc {
+  margin-top: -4px;
+}
+#_settings_form #_content .group.tabs-panel > .desc {
+  margin-bottom: 32px;
+}
+#_settings_form #_content .section + .section {
+  margin-top: 20px;
+}
+#_settings_form #_content .section + .section.cell {
+  margin-top: 0;
+}
+#_settings_form #_content .section .controls.control-img {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 10px;
+  width: auto;
+}
+#_settings_form #_content .section .controls.control-img > label {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 68px;
+  margin-bottom: 0;
+  line-height: 1;
+}
+#_settings_form #_content .section .controls.control-img > label > svg {
+  width: auto;
+  height: 24px;
+  min-width: 24px;
+  filter: grayscale(1);
+  fill: #5d5d5d;
+  object-fit: contain;
+}
+#_settings_form #_content .section .controls.control-img > label > img {
+  width: auto;
+  height: 24px;
+  min-width: 24px;
+  object-fit: contain;
+}
+#_settings_form #_content .section .controls.control-img > label > i {
+  width: auto;
+  height: 24px;
+  min-width: 24px;
+  font-size: 24px;
+  color: #5d5d5d;
+}
+#_settings_form #_content .section .controls.control-img :where(input:not([type=checkbox]), input:not([type=radio])) {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+}
+#_settings_form #_content .section .controls.control-img :where(input[type=color], .input-color) {
+  flex: 0 0 auto;
+  min-width: 30px;
+  padding: 0;
+  cursor: pointer;
+}
+#_settings_form #_content .section:where(.section-checkbox, .section-select, .section-text, .section-textarea, .section-multicheck) .desc {
+  color: #888888;
+  font-size: 13px;
+  margin-bottom: 24px;
+  margin-top: -4px;
+}
+#_settings_form #_content .section.section-checkbox .option {
+  display: table;
+  margin-bottom: 15px;
+}
+#_settings_form #_content .section.section-checkbox .option > div {
+  display: table-cell;
+  padding-right: 5px;
+  vertical-align: top;
+  width: auto;
+}
+#_settings_form #_content .section.section-checkbox .option .explain {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: normal;
+}
+#_settings_form #_content .section.section-checkbox .option .explain span {
+  font-weight: 400;
+}
+#_settings_form #_content .section.section-multicheck .controls input {
+  display: inline-block;
+  width: 20px;
+  margin-right: 10px;
+}
+#_settings_form #_content .section .heading {
+  font-size: 14px;
+  padding: 0 0 12px 0;
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  font-weight: 700;
+}
+#_settings_form #_content .section .heading.inline-heading {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+#_settings_form #_content .section .desc {
+  max-width: 100%;
+}
+#_settings_form #_content .section .desc :where(b, strong) {
+  font-weight: 700;
+}
+#_settings_form #_content .section .option ~ .desc {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+#_settings_form #_content .section .controls {
+  position: relative;
+  width: 100%;
+}
+#_settings_form #_content .section .controls > label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+#_settings_form #_content .section .controls :where(input:not([type=checkbox]):not([type=radio]), textarea, select) {
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  padding: 10px;
+  color: #454545;
+  font-size: 13px;
+  line-height: normal;
+  font-weight: 500;
+  max-width: 100%;
+  letter-spacing: 0.1px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+#_settings_form #_content .section .controls :where(input:not([type=checkbox]):not([type=radio]), textarea, select)::placeholder {
+  color: #adb5bd;
+}
+#_settings_form #_content .section .controls :where(input:not([type=checkbox]):not([type=radio]), textarea, select):focus {
+  border-color: #2271b1;
+  box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.15);
+  outline: none;
+}
+#_settings_form #_content .section .controls :where(input:not([type=checkbox]):not([type=radio])) {
+  min-width: 0;
+  min-height: 43px;
+}
+#_settings_form #_content .section .controls input[type=number] {
+  width: 100%;
+  max-width: 250px;
+}
+#_settings_form #_content .section .controls select {
+  padding: 12px 25px 12px 12px;
+  width: auto;
+  min-width: 200px;
+}
+#_settings_form #_content .section .controls textarea {
+  padding: 10px 12px;
+}
+#_settings_form #_content .section .controls .inline-group {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+}
+#_settings_form #_content .section .controls .inline-group > span {
+  padding: 10px;
+}
+#_settings_form #_content .section .controls .inline-group label {
+  font-size: 12px;
+  color: #999999;
+}
+#_settings_form #_content .section .controls .inline-group label :where(input, select, textarea) {
+  margin-top: 5px;
+  font-size: 13px;
+}
+#_settings_form #_content .section .controls ~ .desc {
+  margin-top: -4px;
+  margin-bottom: 0;
+}
+#_settings_form #_content .section .explain {
+  font-size: 13px;
+  color: #666666;
+}
+#_settings_form #_content .section .explain span {
+  font-weight: 400;
+}
+#_settings_form #_content .section.section-radio > .desc {
+  color: #888888;
+  font-size: 13px;
+  margin-bottom: 24px;
+  margin-top: -14px;
+}
+#_settings_form #_content .section.section-radio > .option ~ .desc {
+  margin-top: 16px;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group {
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label {
+  display: inline-flex;
+  align-items: center;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label input[type=radio] {
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  background: none;
+  box-shadow: none;
+  margin-top: 5px;
+  margin-right: 8px;
+  width: 22px;
+  height: 22px;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label input[type=radio]::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  border-radius: 50%;
+  border: 1px solid #666666;
+  width: 18px;
+  height: 18px;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label input[type=radio]::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  margin: 0;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: ease 0.15s;
+  width: 12px;
+  height: 12px;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label input[type=radio]:checked::before {
+  background-color: #2271b1;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label input[type=radio]:checked::after {
+  border: 1px solid #2271b1;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label input[type=radio]:hover::before {
+  background-color: rgba(34, 113, 177, 0.68);
+  transition: 0.3s;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label input[type=radio]:hover::after {
+  border: 1px solid rgba(34, 113, 177, 0.68);
+  transition: 0.3s;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label > span {
+  font-weight: 500;
+  font-size: 14px;
+  color: #666666;
+  margin-top: 5px;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label .otp-setup-note {
+  display: inline;
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.3;
+  margin-top: 5px;
+  margin-left: 8px;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label .otp-setup-note.warning {
+  color: #b26200;
+}
+#_settings_form #_content .section.section-radio .controls .inline-group > label .otp-setup-note.ok {
+  color: #00a32a;
+}
+#_settings_form #_content .save-bar {
+  display: block;
+  padding: 30px 20px 15px 0;
+}
+#_settings_form #_content .save-bar button[type=submit] {
+  height: 36px;
+  width: 160px;
+  max-width: 100%;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+#_settings_form #_content .save-bar button[type=submit]:hover:not([disabled]) {
+  box-shadow: 0 3px 10px rgba(34, 113, 177, 0.4);
+  transform: translateY(-1px);
+}
+#_settings_form #_content .save-bar button[type=submit]:active:not([disabled]) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+#_settings_form #_content .save-bar button[type=submit] i {
+  font-size: 16px;
+}
+#_settings_form #_content .save-bar button[type=submit] svg {
+  width: 16px;
+  height: 16px;
+}
+#_settings_form #_content .save-bar button[type=submit][disabled] {
+  background: #2271b1 !important;
+  border-color: #2271b1 !important;
+  color: #ffffff !important;
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.hda-notice {
+  margin: 0 0 20px;
+  padding: 10px 15px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+.hda-notice:not(:first-child) {
+  margin-top: 16px;
+}
+.hda-notice p {
+  margin: 0;
+}
+.hda-notice p + p {
+  margin-top: 5px;
+}
+.hda-notice .dashicons {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+.hda-notice--info {
+  background: #f0f6fc;
+  border-left: 4px solid #72aee6;
+}
+.hda-notice--info .dashicons {
+  color: #0073aa;
+}
+.hda-notice--warning {
+  background: #fcf9e8;
+  border-left: 4px solid #dba617;
+}
+.hda-notice--warning .dashicons {
+  color: #f0b849;
+}
+.hda-notice--success {
+  background: #ecf7ed;
+  border-left: 4px solid #00a32a;
+}
+.hda-notice--success .dashicons {
+  color: #46b450;
+}
+.hda-notice__detail {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.hda-data-cleanup {
+  margin-top: 32px;
+  padding: 16px 20px;
+  border: 1px solid #f0c33c;
+  border-left-width: 4px;
+  background: #fffef5;
+}
+.hda-data-cleanup__title {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+.hda-data-cleanup__title .dashicons {
+  color: #d63638;
+  vertical-align: middle;
+}
+.hda-data-cleanup__option {
+  margin: 12px 0 0;
+}
+.hda-data-cleanup__label {
+  font-weight: 600;
+  color: #d63638;
+}
+.hda-data-cleanup__hint {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+.hda-data-cleanup__note {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #f0f0f1;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #50575e;
+}
+.hda-data-cleanup__note .dashicons {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+input.tiny-text {
+  width: 60px;
+}
+
+input[type=number].tiny-text {
+  width: 60px;
+  padding-right: 0;
+}
+
+input.input-icon {
+  min-width: 200px !important;
+  width: 35% !important;
+  flex: 0 0 auto !important;
+  max-width: 100% !important;
+}
+
+.controls.control-prefix {
+  display: flex;
+  align-items: center;
+  width: 8px;
+  height: 8px;
+}
+.controls.control-prefix .prefix .input-txt {
+  font-weight: 700;
+  color: #999999;
+  text-decoration: underline;
+}
+.controls.control-prefix :where(input:not([type=checkbox]):not([type=radio]), select) {
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  max-height: 43px;
+}
+
+#_settings_form #_content .section-heading {
+  background-color: #f0f0f1;
+  padding: 24px;
+  padding-left: 28px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+#_settings_form #_content .section-heading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  background-color: #2271b1;
+  border-radius: 0 3px 3px 0;
+}
+#_settings_form #_content .section-heading h2 {
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+#_settings_form #_content .section-heading .desc {
+  font-size: 14px;
+}
+
+.container-fieldset {
+  margin: 0;
+  padding-inline: 30px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  padding-bottom: 30px;
+  transition: box-shadow 0.25s ease;
+}
+.container-fieldset:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.container-fieldset:not(:last-child) {
+  margin-bottom: 30px;
+}
+.container-fieldset .section-legend {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  padding-inline: 12px;
+  color: #2271b1;
+}
+.container-fieldset .section-legend + .hda-notice {
+  margin-top: -14px;
+}
+.container-fieldset .section-subtitle {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 24px 0 16px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #dc3232;
+}
+.container-fieldset .section-subtitle:first-of-type {
+  margin-top: 0;
+}
+
+.hda-bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.hda-bulk-actions .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.hda-bulk-actions .button .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 1;
+}
+.hda-bulk-actions .button:hover {
+  transform: translateY(-1px);
+}
+.hda-bulk-actions .button:active {
+  transform: translateY(0);
+}
+.hda-bulk-actions .button-primary:hover {
+  box-shadow: 0 3px 10px rgba(34, 113, 177, 0.4);
+}
+
+#_settings_form .hda-btn-danger, #_settings_form .hda-btn-danger:focus, #_settings_form .hda-btn-danger:active {
+  color: #b32d2e;
+  border-color: #b32d2e;
+  background: #ffffff;
+  box-shadow: none;
+}
+#_settings_form .hda-btn-danger:hover {
+  background-color: #b32d2e;
+  color: #ffffff;
+  border-color: #b32d2e;
+  box-shadow: 0 3px 10px rgba(179, 45, 46, 0.35);
+}
+
+/**
+ * WAF module styles.
+ */
+.hda-country-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.hda-country-selector .select {
+  width: 100%;
+  max-width: 400px;
+}
+.hda-country-selector .hda-add-country-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.hda-country-selector .hda-add-country-btn .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  line-height: 1;
+}
+
+.hda-blocked-list-wrap {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  min-height: 50px;
+  margin-bottom: 12px;
+}
+
+.hda-blocked-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hda-blocked-list .empty-msg {
+  color: #999;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+.hda-blocked-list .blocked-item {
+  background: #fdeaea;
+  border: 1px solid #f5c6c6;
+  color: #d63638;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.hda-blocked-list .blocked-item img {
+  border-radius: 2px;
+}
+.hda-blocked-list .blocked-item .remove-country {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #d63638;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+  margin-left: 4px;
+}
+.hda-blocked-list .blocked-item .remove-country:hover {
+  color: #a00;
+}
+
+.hda-cron-stats {
+  margin-bottom: 8px;
+}
+
+.hda-cron-stat {
+  text-align: center;
+  padding: 20px 16px;
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.hda-cron-stat:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-color: #ddd;
+}
+.hda-cron-stat__value {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.hda-cron-stat__value--primary {
+  color: #0073aa;
+}
+.hda-cron-stat__value--success {
+  color: #46b450;
+}
+.hda-cron-stat__value--danger {
+  color: #d63638;
+}
+.hda-cron-stat__value--recurring {
+  color: #826eb4;
+}
+.hda-cron-stat__value--one-time {
+  color: #f0b849;
+}
+.hda-cron-stat__label {
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+
+.hda-cron-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+.hda-cron-badge--recurring {
+  background: #f0ecf7;
+  color: #826eb4;
+}
+.hda-cron-badge--one-time {
+  background: #fef8ee;
+  color: #d4940a;
+}
+.hda-cron-badge--overdue {
+  background: #fcf0f1;
+  color: #d63638;
+}
+
+.hda-cron-legend {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 12px;
+  color: #555;
+}
+.hda-cron-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hda-cron-table {
+  margin-top: 8px;
+}
+.hda-cron-table th,
+.hda-cron-table td {
+  font-size: 13px;
+  padding: 10px 12px;
+}
+.hda-cron-table th {
+  font-weight: 600;
+}
+.hda-cron-table__row-num {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  width: 36px;
+}
+.hda-cron-table__hook {
+  font-size: 12px;
+  word-break: break-all;
+}
+.hda-cron-table__schedule {
+  color: #826eb4;
+  font-weight: 500;
+}
+.hda-cron-table__interval-seconds {
+  color: #999;
+  font-size: 11px;
+  margin-left: 2px;
+}
+.hda-cron-table .hda-cron-run,
+.hda-cron-table .hda-cron-delete {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.hda-cron-table .hda-cron-run:hover:not([disabled]),
+.hda-cron-table .hda-cron-delete:hover:not([disabled]) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.hda-cron-table .hda-cron-run:active:not([disabled]),
+.hda-cron-table .hda-cron-delete:active:not([disabled]) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.hda-cron-table .dashicons {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+}
+
+.hda-cron-status {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #666;
+  min-height: 20px;
+}
+
+.hda-spin {
+  animation: hda-spin 1s linear infinite;
+}
+
+@keyframes hda-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.hda-table-responsive {
+  overflow-x: auto;
+  margin-top: 4px;
+}
+
+/**
+ * Gateway Instructions (Setup Guides)
+ *
+ * Shared styles for the collapsible "How to set up" details blocks
+ * in the LoginSecurity → OTP Gateway configuration sections.
+ */
+.hda-gateway-details {
+  margin-top: 6px;
+}
+
+.hda-gateway-details__summary {
+  cursor: pointer;
+  color: #0073aa;
+  font-weight: 600;
+}
+
+.hda-gateway-steps {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  line-height: 1.8;
+}
+
+.hda-gateway-doc-link {
+  margin: 6px 0 0;
+}
+
+.hda-otp-mode-list {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}

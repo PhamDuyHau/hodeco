@@ -1,0 +1,35 @@
+/* tailwind/index.css - Tailwind CSS v4 Entry Point */
+
+@import 'tailwindcss' source(none);
+
+/* Config */
+@import './properties.css';
+@import './themes.css';
+@import './base.css';
+@import './components/index.css';
+@import './utilities/index.css';
+
+/* Dark mode variant - matches SCSS mixin.dark-mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Source scanning - theme `hd` */
+@source "../../../*.php";
+@source "../../../{app,parts,src,templates,woocommerce}/**/*.php";
+@source "../../../resources/{scripts,components}/**/*.js";
+@source "../../../resources/styles/tailwind/**/*.css";
+
+/* HTML */
+@source "../../../parts/**/*.html";
+
+/* Ignore */
+@source not "../../../vendor/**";
+@source not "../../../assets/**";
+
+/* Plugin sources - hd-addons */
+@source "../../../../../plugins/hd-addons/src/ContactLink/ContactLink.php";
+@source "../../../../../plugins/hd-addons/src/SocialLink/SocialLink.php";
+@source "../../../../../plugins/hd-addons/src/Woocommerce/Woocommerce.php";
+
+/* Plugins */
+@plugin "@tailwindcss/forms";
+@plugin "./plugins/index.js";

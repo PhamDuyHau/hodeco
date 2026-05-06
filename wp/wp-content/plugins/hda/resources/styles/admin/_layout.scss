@@ -1,0 +1,104 @@
+@use '../utils/variables' as vars;
+@use '../utils/mixins' as mixin;
+
+// Flex grid layout system (responsive breakpoints).
+
+@for $i from 1 through 12 {
+	:is(.flex, .\!flex) {
+		&:not(.gap) {
+			&.sm-up-#{$i} > .cell {
+				@include mixin.flex-self($i, 1, 0, false);
+			}
+
+			& > .cell.sm-#{$i} {
+				@include mixin.flex-basis($i, 0, false);
+			}
+
+			& > .cell.\!sm-#{$i} {
+				@include mixin.flex-basis($i, 0, true);
+			}
+		}
+
+		&.gap {
+			&.sm-up-#{$i} > .cell {
+				@include mixin.flex-self($i, 1, vars.$gap-xs, false);
+			}
+
+			& > .cell.sm-#{$i} {
+				@include mixin.flex-basis($i, vars.$gap-xs, false);
+			}
+
+			& > .cell.\!sm-#{$i} {
+				@include mixin.flex-basis($i, vars.$gap-xs, true);
+			}
+		}
+	}
+}
+
+@include mixin.mq-min-width(vars.$md) {
+	@for $i from 1 through 12 {
+		:is(.flex, .\!flex) {
+			&:not(.gap) {
+				&.md-up-#{$i} > .cell {
+					@include mixin.flex-self($i, 1, 0, false);
+				}
+
+				& > .cell.md-#{$i} {
+					@include mixin.flex-basis($i, 0, false);
+				}
+
+				& > .cell.\!md-#{$i} {
+					@include mixin.flex-basis($i, 0, true);
+				}
+			}
+
+			&.gap {
+				&.md-up-#{$i} > .cell {
+					@include mixin.flex-self($i, 1, vars.$gap, false);
+				}
+
+				& > .cell.md-#{$i} {
+					@include mixin.flex-basis($i, vars.$gap, false);
+				}
+
+				& > .cell.\!md-#{$i} {
+					@include mixin.flex-basis($i, vars.$gap, true);
+				}
+			}
+		}
+	}
+}
+
+@include mixin.mq-min-width(vars.$lg) {
+	@for $i from 1 through 12 {
+		:is(.flex, .\!flex) {
+			&:not(.gap) {
+				&.lg-up-#{$i} > .cell {
+					@include mixin.flex-self($i, 1, 0, false);
+				}
+
+				& > .cell.lg-#{$i} {
+					@include mixin.flex-basis($i, 0, false);
+				}
+
+				& > .cell.\!lg-#{$i} {
+					@include mixin.flex-basis($i, 0, true);
+				}
+			}
+
+			&.gap {
+				&.lg-up-#{$i} > .cell {
+					@include mixin.flex-self($i, 1, vars.$gap, false);
+				}
+
+				& > .cell.lg-#{$i} {
+					@include mixin.flex-basis($i, vars.$gap, false);
+				}
+
+				& > .cell.\!lg-#{$i} {
+					@include mixin.flex-basis($i, vars.$gap, true);
+				}
+			}
+		}
+	}
+}

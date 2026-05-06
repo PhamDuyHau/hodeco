@@ -1,0 +1,114 @@
+{
+  "_jquery-plugins.Cyn_OIe4.js": {
+    "file": "js/jquery-plugins.Cyn_OIe4.js",
+    "name": "jquery-plugins"
+  },
+  "_vendor.BsC8x5XB.css": {
+    "file": "css/vendor.BsC8x5XB.css",
+    "src": "_vendor.BsC8x5XB.css"
+  },
+  "_vendor.iJdduJUa.js": {
+    "file": "js/vendor.iJdduJUa.js",
+    "name": "vendor",
+    "css": [
+      "css/vendor.BsC8x5XB.css"
+    ]
+  },
+  "wp/wp-content/plugins/hda/resources/scripts/admin.js": {
+    "file": "js/admin.BgdJb5Eu.js",
+    "name": "admin",
+    "src": "wp/wp-content/plugins/hda/resources/scripts/admin.js",
+    "isEntry": true,
+    "imports": [
+      "_jquery-plugins.Cyn_OIe4.js"
+    ]
+  },
+  "wp/wp-content/plugins/hda/resources/scripts/cookie-consent.js": {
+    "file": "js/cookie-consent.Bz71TwNC.js",
+    "name": "cookie-consent",
+    "src": "wp/wp-content/plugins/hda/resources/scripts/cookie-consent.js",
+    "isEntry": true
+  },
+  "wp/wp-content/plugins/hda/resources/scripts/hda.js": {
+    "file": "js/hda.CrVOZqma.js",
+    "name": "hda",
+    "src": "wp/wp-content/plugins/hda/resources/scripts/hda.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor.iJdduJUa.js",
+      "_jquery-plugins.Cyn_OIe4.js"
+    ]
+  },
+  "wp/wp-content/plugins/hda/resources/scripts/login.js": {
+    "file": "js/login.DCwpG4LU.js",
+    "name": "login",
+    "src": "wp/wp-content/plugins/hda/resources/scripts/login.js",
+    "isEntry": true
+  },
+  "wp/wp-content/plugins/hda/resources/scripts/otp-login.js": {
+    "file": "js/otp-login.DGg1uIML.js",
+    "name": "otp-login",
+    "src": "wp/wp-content/plugins/hda/resources/scripts/otp-login.js",
+    "isEntry": true
+  },
+  "wp/wp-content/plugins/hda/resources/scripts/otp-profile.js": {
+    "file": "js/otp-profile.DHr261mE.js",
+    "name": "otp-profile",
+    "src": "wp/wp-content/plugins/hda/resources/scripts/otp-profile.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor.iJdduJUa.js"
+    ]
+  },
+  "wp/wp-content/plugins/hda/resources/scripts/sorting.js": {
+    "file": "js/sorting.BGtc5XaP.js",
+    "name": "sorting",
+    "src": "wp/wp-content/plugins/hda/resources/scripts/sorting.js",
+    "isEntry": true
+  },
+  "wp/wp-content/plugins/hda/resources/styles/admin.scss": {
+    "file": "css/admin.3SLS4yWC.css",
+    "src": "wp/wp-content/plugins/hda/resources/styles/admin.scss",
+    "isEntry": true,
+    "name": "admin",
+    "names": [
+      "admin.css"
+    ]
+  },
+  "wp/wp-content/plugins/hda/resources/styles/cookie-consent.scss": {
+    "file": "css/cookie-consent.DZHFblGO.css",
+    "src": "wp/wp-content/plugins/hda/resources/styles/cookie-consent.scss",
+    "isEntry": true,
+    "name": "cookie-consent",
+    "names": [
+      "cookie-consent.css"
+    ]
+  },
+  "wp/wp-content/plugins/hda/resources/styles/hda.scss": {
+    "file": "css/hda.D73Rp3nv.css",
+    "src": "wp/wp-content/plugins/hda/resources/styles/hda.scss",
+    "isEntry": true,
+    "name": "hda",
+    "names": [
+      "hda.css"
+    ]
+  },
+  "wp/wp-content/plugins/hda/resources/styles/login.scss": {
+    "file": "css/login.GcgUJDzx.css",
+    "src": "wp/wp-content/plugins/hda/resources/styles/login.scss",
+    "isEntry": true,
+    "name": "login",
+    "names": [
+      "login.css"
+    ]
+  },
+  "wp/wp-content/plugins/hda/resources/styles/otp-profile.scss": {
+    "file": "css/otp-profile.BVKd-_E9.css",
+    "src": "wp/wp-content/plugins/hda/resources/styles/otp-profile.scss",
+    "isEntry": true,
+    "name": "otp-profile",
+    "names": [
+      "otp-profile.css"
+    ]
+  }
+}

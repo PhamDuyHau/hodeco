@@ -1,0 +1,45 @@
+/**
+ * OTP Profile Verification Styles
+ */
+.hda-otp-status {
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.hda-otp-status.verified {
+  color: #0a6b0a;
+  background: #d4edda;
+}
+.hda-otp-status.not-verified {
+  color: #856404;
+  background: #fff3cd;
+}
+
+.hda-otp-message-wrap {
+  min-height: 20px;
+}
+
+.hda-otp-message {
+  font-size: 13px;
+  display: inline-block;
+}
+.hda-otp-message.error {
+  color: #dc3545;
+}
+.hda-otp-message.success {
+  color: #28a745;
+}
+
+.hda-otp-verify-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hda-otp-code-input {
+  width: 120px !important;
+}

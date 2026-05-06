@@ -1,0 +1,61 @@
+// Bulk actions toolbar (Enable All / Disable All).
+
+.hda-bulk-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 32px;
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		height: 32px;
+		padding: 0 14px;
+		font-size: 13px;
+		font-weight: 600;
+		transition:
+			box-shadow 0.2s ease,
+			transform 0.2s ease;
+
+		.dashicons {
+			font-size: 18px;
+			width: 18px;
+			height: 18px;
+			line-height: 1;
+		}
+
+		&:hover {
+			transform: translateY(-1px);
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+	}
+
+	.button-primary {
+		&:hover {
+			box-shadow: 0 3px 10px rgba(34, 113, 177, 0.4);
+		}
+	}
+}
+
+// Danger / Disable button.
+#_settings_form .hda-btn-danger {
+	&,
+	&:focus,
+	&:active {
+		color: #b32d2e;
+		border-color: #b32d2e;
+		background: #ffffff;
+		box-shadow: none;
+	}
+
+	&:hover {
+		background-color: #b32d2e;
+		color: #ffffff;
+		border-color: #b32d2e;
+		box-shadow: 0 3px 10px rgba(179, 45, 46, 0.35);
+	}
+}

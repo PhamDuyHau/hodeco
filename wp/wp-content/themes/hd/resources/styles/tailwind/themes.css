@@ -1,0 +1,33 @@
+/* tailwind/themes.css - Design tokens & theme variables */
+
+@theme {
+	/* Breakpoints - Must declare all to ensure proper cascade order */
+	--breakpoint-sm: 640px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 1024px;
+	--breakpoint-xl: 1280px;
+	--breakpoint-2xl: 1536px;
+
+	/* Fonts */
+	--font-header: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	--font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	--font-mono: Consolas, 'Liberation Mono', Courier, monospace;
+
+	/* Override Tailwind defaults */
+	--default-font-family: var(--font-body);
+	--default-mono-font-family: var(--font-mono);
+
+	/* Typography */
+	--global-line-height: 1.618;
+	--header-line-height: 1.3;
+	--global-fs: 1rem;
+	--text-base--line-height: var(--global-line-height);
+
+	/* Colors - Primary & Secondary (Tailwind 4 namespace) */
+	/* Usage: .text-primary, .bg-primary, .border-primary, etc. */
+	--color-primary: #0E4087;
+	--color-secondary: #0E4087;
+	--color-background: linear-gradient(180deg, #FBF7EE 0%, #FFFFFF 100%);
+	--color-title: #362705;
+	--color-body: #534D41;
+}

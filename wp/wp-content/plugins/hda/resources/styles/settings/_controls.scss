@@ -1,0 +1,118 @@
+// Standalone controls and utility classes.
+
+input.tiny-text {
+	width: 60px;
+}
+
+input[type='number'].tiny-text {
+	width: 60px;
+	padding-right: 0;
+}
+
+input.input-icon {
+	min-width: 200px !important;
+	width: 35% !important;
+	flex: 0 0 auto !important;
+	max-width: 100% !important;
+}
+
+.controls.control-prefix {
+	display: flex;
+	align-items: center;
+	width: 8px;
+	height: 8px;
+
+	.prefix {
+		.input-txt {
+			font-weight: 700;
+			color: #999999;
+			text-decoration: underline;
+		}
+	}
+
+	:where(input:not([type='checkbox']):not([type='radio']), select) {
+		font-weight: 500 !important;
+		font-size: 14px !important;
+		max-height: 43px;
+	}
+}
+
+// Section heading card.
+#_settings_form #_content .section-heading {
+	background-color: #f0f0f1;
+	padding: 24px;
+	padding-left: 28px;
+	margin-top: 30px;
+	margin-bottom: 40px;
+	border-radius: 6px;
+	border: 1px solid #dddddd;
+	position: relative;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 10px;
+		bottom: 10px;
+		width: 3px;
+		background-color: #2271b1;
+		border-radius: 0 3px 3px 0;
+	}
+
+	h2 {
+		margin-bottom: 16px;
+		margin-top: 0;
+	}
+
+	.desc {
+		font-size: 14px;
+	}
+}
+
+// Fieldset container.
+.container-fieldset {
+	margin: 0;
+	padding-inline: 30px;
+	border-radius: 6px;
+	border: 1px solid #ddd;
+	padding-bottom: 30px;
+	transition: box-shadow 0.25s ease;
+
+	&:hover {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 30px;
+	}
+
+	.section-legend {
+		font-size: 15px;
+		font-weight: 700;
+		text-transform: uppercase;
+		margin-bottom: 30px;
+		padding-inline: 12px;
+		color: #2271b1;
+
+		// Tighten gap when notice immediately follows legend.
+		& + .hda-notice {
+			margin-top: -14px;
+		}
+	}
+
+	.section-subtitle {
+		font-size: 13px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin: 24px 0 16px;
+		padding-bottom: 6px;
+		border-bottom: 1px solid #e0e0e0;
+		color: #dc3232;
+
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
+}

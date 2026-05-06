@@ -1,0 +1,188 @@
+// ──────────────────────────────────────────────────
+// Cron Manager — Stats, badges, table overrides
+// ──────────────────────────────────────────────────
+
+// ─── Stats Cards ─────────────────────────────────
+.hda-cron-stats {
+	margin-bottom: 8px;
+}
+
+.hda-cron-stat {
+	text-align: center;
+	padding: 20px 16px;
+	background: #f9f9f9;
+	border: 1px solid #e8e8e8;
+	border-radius: 6px;
+	transition:
+		box-shadow 0.2s ease,
+		border-color 0.2s ease;
+
+	&:hover {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+		border-color: #ddd;
+	}
+
+	&__value {
+		font-size: 32px;
+		font-weight: 700;
+		line-height: 1.2;
+
+		&--primary {
+			color: #0073aa;
+		}
+		&--success {
+			color: #46b450;
+		}
+		&--danger {
+			color: #d63638;
+		}
+		&--recurring {
+			color: #826eb4;
+		}
+		&--one-time {
+			color: #f0b849;
+		}
+	}
+
+	&__label {
+		font-size: 12px;
+		color: #666;
+		margin-top: 6px;
+		text-transform: uppercase;
+		letter-spacing: 0.3px;
+		font-weight: 500;
+	}
+}
+
+// ─── Type Badges ─────────────────────────────────
+.hda-cron-badge {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 4px;
+	font-size: 11px;
+	font-weight: 600;
+	white-space: nowrap;
+	letter-spacing: 0.2px;
+
+	&--recurring {
+		background: #f0ecf7;
+		color: #826eb4;
+	}
+
+	&--one-time {
+		background: #fef8ee;
+		color: #d4940a;
+	}
+
+	&--overdue {
+		background: #fcf0f1;
+		color: #d63638;
+	}
+}
+
+// ─── Legend ────────────────────────────────────────
+.hda-cron-legend {
+	margin-top: 12px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 20px;
+	font-size: 12px;
+	color: #555;
+
+	> span {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+	}
+}
+
+// ─── Table ────────────────────────────────────────
+.hda-cron-table {
+	margin-top: 8px;
+
+	th,
+	td {
+		font-size: 13px;
+		padding: 10px 12px;
+	}
+
+	th {
+		font-weight: 600;
+	}
+
+	&__row-num {
+		text-align: center;
+		color: #999;
+		font-size: 12px;
+		width: 36px;
+	}
+
+	&__hook {
+		font-size: 12px;
+		word-break: break-all;
+	}
+
+	&__schedule {
+		color: #826eb4;
+		font-weight: 500;
+	}
+
+	&__interval-seconds {
+		color: #999;
+		font-size: 11px;
+		margin-left: 2px;
+	}
+
+	// Action buttons
+	.hda-cron-run,
+	.hda-cron-delete {
+		transition:
+			transform 0.15s ease,
+			box-shadow 0.15s ease;
+
+		&:hover:not([disabled]) {
+			transform: translateY(-1px);
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		&:active:not([disabled]) {
+			transform: translateY(0);
+			box-shadow: none;
+		}
+	}
+
+	.dashicons {
+		font-size: 14px;
+		width: 14px;
+		height: 14px;
+		vertical-align: middle;
+	}
+}
+
+// ─── Status bar ───────────────────────────────────
+.hda-cron-status {
+	margin-top: 16px;
+	font-size: 13px;
+	color: #666;
+	min-height: 20px;
+}
+
+// ─── Spinner ──────────────────────────────────────
+.hda-spin {
+	animation: hda-spin 1s linear infinite;
+}
+
+@keyframes hda-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// ─── Responsive table wrapper ─────────────────────
+.hda-table-responsive {
+	overflow-x: auto;
+	margin-top: 4px;
+}

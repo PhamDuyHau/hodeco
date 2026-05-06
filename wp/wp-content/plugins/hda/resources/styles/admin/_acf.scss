@@ -1,0 +1,227 @@
+// ACF (Advanced Custom Fields) style overrides.
+
+.acf-gallery {
+	border: #ccd0d4 solid 1px;
+	height: auto !important;
+	position: relative;
+	min-height: 230px;
+	max-height: 400px;
+}
+
+.acf-admin-page {
+	.notice.notice-warning {
+		flex: 1 1 100%;
+	}
+}
+
+.acf-editor-wrap {
+	&.html-active {
+		textarea {
+			height: 100px;
+		}
+	}
+
+	iframe {
+		min-height: 100px;
+	}
+}
+
+:is(.acf-field, p) {
+	&.tiny-text {
+		display: flex;
+		align-items: center;
+
+		& > .acf-label,
+		& > label {
+			flex: 0 0 auto;
+			width: 176px;
+			margin-bottom: 0;
+		}
+
+		& > .acf-input,
+		& > input[type='number'] {
+			flex: 1 1 0;
+			min-width: 0;
+			max-width: 80px;
+		}
+	}
+
+	.acf-label {
+		label {
+			font-weight: 500;
+			font-style: normal !important;
+		}
+	}
+}
+
+:is(#acf-term-fields, #edittag) {
+	.acf-field {
+		select,
+		input[type='number'] {
+			width: auto;
+			max-width: 100%;
+		}
+	}
+}
+
+#acf-term-fields {
+	& > .acf-field {
+		& > .acf-label label {
+			font-size: 13px;
+			color: #000000;
+		}
+	}
+}
+
+.form-table > tbody > .acf-field > .acf-label label {
+	font-weight: 600;
+	color: #000000;
+}
+
+.acf-image-uploader {
+	.hide-if-value {
+		& > p {
+			font-size: 0;
+
+			a.acf-button.button {
+				border: 1px dashed #c3c4c7;
+				box-sizing: border-box;
+				line-height: 1.6;
+				padding: 9px 0;
+				position: relative;
+				text-align: center;
+				width: 400px;
+				max-width: 100%;
+				cursor: pointer;
+				background-color: #f0f0f1;
+				color: #2c3338;
+				display: block;
+				font-size: 13px;
+
+				&:hover {
+					background-color: #ffffff;
+				}
+			}
+		}
+	}
+}
+
+.widget-content {
+	.acf-image-uploader {
+		.hide-if-value {
+			& > p {
+				a.acf-button.button {
+					width: auto !important;
+				}
+			}
+		}
+	}
+}
+
+.acf-field p.description {
+	color: #667085;
+	font-size: smaller;
+	display: block;
+	margin-top: 5px;
+}
+
+.acf-tab-group li a {
+	font-size: 13px;
+	font-weight: 500;
+	line-height: normal;
+	margin-bottom: -1px;
+}
+
+.acf-tab-wrap {
+	overflow: unset;
+}
+
+:is(.acf-admin-page, .acf-settings-wrap) {
+	:where(.notice.notice-error, .notice.notice-warning) {
+		flex: 1 1 100%;
+		max-width: 100%;
+	}
+}
+
+.acf-flexible-content .layout .acf-fc-layout-handle {
+	font-weight: 700;
+}
+
+.acf-fields > .acf-tab-wrap .acf-tab-group {
+	border-bottom: none !important;
+	margin-bottom: 0;
+
+	li {
+		border-bottom: #ccd0d4 solid 1px;
+	}
+}
+
+.acf-admin-page .acf-field.acf-field-number .acf-input input[type='number'] {
+	max-width: unset;
+}
+
+.acf-repeater .acf-row-handle .acf-icon {
+	&:where(.-minus, .-plus) {
+		border-color: #d63638;
+		color: #d63638;
+	}
+}
+
+.acf-flexible-content .layout {
+	border: 1px solid #2271b1;
+
+	.acf-fc-layout-handle .acf-fc-layout-title {
+		font-weight: 700;
+	}
+}
+
+.acf-settings-wrap .notice.notice-error {
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+.custom-acf-nav-menu select {
+	padding: 4px 8px !important;
+	margin: 0 !important;
+	font-size: 14px !important;
+	border-width: 1px !important;
+	font-weight: 400 !important;
+}
+
+:is(.acf-editor-wrap .mce-wordcount, .acf-editor-wrap .mce-charcount) {
+	display: inline-block !important;
+	font-size: inherit;
+	text-transform: capitalize !important;
+	padding: 8px 0;
+	position: relative;
+}
+
+.acf-editor-wrap .mce-charcount:after {
+	content: '|';
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.acf-admin-page .notice.notice-warning {
+	width: 100%;
+}
+
+.acf-image-uploader .image-wrap img[src$='.svg'] {
+	min-height: 50px;
+	min-width: 50px;
+}
+
+.acf-tooltip {
+	max-width: 320px;
+}
+
+:is(
+	#acf-form-data ~ h2,
+	.acf-postbox > .hndle:hover .acf-hndle-cog,
+	.acf-postbox > .postbox-header:hover .acf-hndle-cog,
+	#tmpl-acf-field-group-pro-features,
+	.acf-admin-notice.notice.notice-warning,
+	.btn-upgrade.acf-admin-toolbar-upgrade-btn
+) {
+	display: none !important;
+}

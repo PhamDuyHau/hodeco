@@ -1,0 +1,141 @@
+// slider/fx-slider.scss
+
+/**
+ * Slider FX Styles (Swiper)
+ */
+
+@use '../../../../styles/utils/variables' as vars;
+@use '../../../../styles/utils/mixins' as mixin;
+
+// Import Swiper styles
+@use 'swiper/css';
+@use 'swiper/css/navigation';
+@use 'swiper/css/pagination';
+@use 'swiper/css/grid';
+@use 'swiper/css/free-mode';
+
+// ============================================================================
+// CSS CUSTOM PROPERTIES
+// ============================================================================
+
+:root {
+	--swiper-navigation-size: 48px;
+	--swiper-navigation-sides-offset: 12px;
+	--swiper-navigation-color: #{vars.$color-primary};
+	--swiper-pagination-color: #{vars.$color-primary};
+	--swiper-pagination-bullet-inactive-color: #{vars.$color-primary};
+	--swiper-pagination-bottom: 16px;
+	--swiper-pagination-top: auto;
+
+	--Primary-01: #{vars.$color-primary};
+	--Primary-02: #{vars.$color-secondary};
+}
+
+// ============================================================================
+// SWIPER CONTAINER
+// ============================================================================
+
+.swiper-container {
+	position: relative;
+	z-index: 1;
+
+	&:not(.swiper-image) {
+		.swiper-controls {
+			.swiper-pagination {
+				position: relative;
+				bottom: 0;
+				margin-top: 24px;
+			}
+		}
+	}
+}
+
+.swiper-wrapper {
+	height: fit-content;
+}
+
+// ============================================================================
+// SWIPER MARQUEE
+// ============================================================================
+
+.swiper-marquee {
+	&.swiper-wrapper {
+		transition-timing-function: linear !important;
+		touch-action: manipulation;
+	}
+}
+
+// ============================================================================
+// NAVIGATION BUTTONS
+// ============================================================================
+
+:is(.swiper-button-prev, .swiper-button-next) {
+	border-radius: vars.$radius-sm;
+	color: vars.$color-swiper-button !important;
+	background-color: vars.$white;
+	border: 1px solid vars.$color-swiper-button;
+	transition: all 0.3s;
+	// box-shadow: inset 0 0 12px #0000000a;
+	@include mixin.mq-max(lg) {
+		@include mixin.box(42);
+	}
+	@include mixin.dark-mode {
+		border: 1px solid #ffffff0f;
+		box-shadow: inset 0 0 12px #ffffff0a;
+	}
+
+	&::after,
+	&::before {
+		display: none !important;
+	}
+
+	&:hover {
+		background-color: vars.$color-swiper-button;
+		border: 1px solid vars.$white;
+		svg {
+			color: vars.$white;
+		}
+	}
+
+	svg {
+		color: vars.$color-swiper-button;
+		@include mixin.box(24);
+		@include mixin.mq-max(lg) {
+			@include mixin.box(20);
+		}
+	}
+}
+
+// ============================================================================
+// AUTOPLAY PROGRESS
+// ============================================================================
+
+.swiper-autoplay-progress {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: var(--swiper-theme-color);
+	@include mixin.box(48);
+
+	svg {
+		--progress: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 10;
+		width: 100%;
+		height: 100%;
+		stroke-width: 4px;
+		stroke: var(--swiper-theme-color);
+		fill: none;
+		stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+		stroke-dasharray: 125.6;
+		transform: rotate(-90deg);
+		transition: stroke-dashoffset 0.1s linear;
+	}
+}

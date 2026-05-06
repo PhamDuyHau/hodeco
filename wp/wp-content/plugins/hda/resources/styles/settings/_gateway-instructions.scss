@@ -1,0 +1,31 @@
+/**
+ * Gateway Instructions (Setup Guides)
+ *
+ * Shared styles for the collapsible "How to set up" details blocks
+ * in the LoginSecurity → OTP Gateway configuration sections.
+ */
+
+.hda-gateway-details {
+	margin-top: 6px;
+}
+
+.hda-gateway-details__summary {
+	cursor: pointer;
+	color: #0073aa;
+	font-weight: 600;
+}
+
+.hda-gateway-steps {
+	margin: 8px 0 0;
+	padding-left: 20px;
+	line-height: 1.8;
+}
+
+.hda-gateway-doc-link {
+	margin: 6px 0 0;
+}
+
+.hda-otp-mode-list {
+	margin: 4px 0 0;
+	padding-left: 18px;
+}

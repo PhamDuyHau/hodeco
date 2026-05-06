@@ -1,0 +1,14 @@
+/* tabs/fx-tabs.scss - Lazy-loaded with fx-tabs.js */
+/* utils/_variables.scss */
+/* Single source of truth: Tailwind themes.css defines --vars, SCSS references them */
+/* tabs/fx-tabs.scss - Lazy-loaded with fx-tabs.js */
+/* utils/_mixins.scss */
+/* utils/_functions.scss */
+.tabs-content .tabs-panel {
+  transform: translateY(8px);
+}
+.tabs-content .tabs-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}

@@ -1,0 +1,28 @@
+/* tailwind/components/index.css - Reusable UI patterns (c-* prefix) */
+
+@layer components {
+	/* Form - hide number spinners */
+	input[type='number'].c-input-text {
+		appearance: textfield;
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+
+	.c-header {
+		@apply tracking-tight antialiased font-header leading-(--header-line-height);
+		font-weight: inherit;
+	}
+
+	/* Interactive */
+	.c-hover {
+		@apply transition ease-in-out;
+	}
+
+	.c-back-to-top {
+		@apply flex items-center justify-center fixed z-999 border rounded opacity-0 data-[show=true]:opacity-100 hover:text-primary hover:border-primary;
+	}
+}

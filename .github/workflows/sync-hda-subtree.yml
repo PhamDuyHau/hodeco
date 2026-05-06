@@ -1,0 +1,46 @@
+name: Sync HDA Plugin
+
+on:
+    push:
+        branches: [master]
+
+    # Cho phép chạy thủ công từ GitHub UI
+    workflow_dispatch:
+
+jobs:
+    # ── Bước 1: Phát hiện thay đổi ──────────
+    detect-changes:
+        runs-on: ubuntu-latest
+        outputs:
+            hda: ${{ steps.filter.outputs.hda }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dorny/paths-filter@v3
+              id: filter
+              with:
+                  filters: |
+                      hda:
+                        - 'wp/wp-content/plugins/hda/**'
+
+    # ── Bước 2: Sync HDA plugin → HD-Agency/hda ──
+    sync-hda:
+        needs: detect-changes
+        if: needs.detect-changes.outputs.hda == 'true' || github.event_name == 'workflow_dispatch'
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Sync hda → HD-Agency/hda
+              env:
+                  TOKEN: ${{ secrets.HDA_PUSH_TOKEN }}
+                  COMMIT_MSG: ${{ github.event.head_commit.message }}
+              run: |
+                  cd wp/wp-content/plugins/hda
+                  git init
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  git add .
+                  git commit -m "${COMMIT_MSG:-Manual sync}"
+                  git branch -M main
+                  git remote add target "https://x-access-token:${TOKEN}@github.com/HD-Agency/hda.git"
+                  git push --force target main

@@ -1,0 +1,58 @@
+/* about.scss */
+/* About specific styles */
+
+@use 'utils/variables' as vars;
+@use 'utils/functions' as func;
+@use 'utils/mixins' as mixin;
+@use 'partials';
+
+// ============================================================================
+.heading-title {
+	&::before,
+	&::after {
+		background-image: url('../../resources/img/line-title-right-full.svg');
+	}
+	&::before {
+		transform: rotate(180deg);
+	}
+}
+// SECTION ABOUT
+.sc-about {
+	.desc {
+		strong {
+			color: vars.$color-secondary;
+		}
+	}
+}
+// SECTION TEAM
+.sc-team {
+	.list-team {
+		min-height: 510px;
+		@include mixin.mq-min(lg) {
+			min-height: 520px;
+		}
+		.swiper-wrapper {
+			.swiper-slide {
+			}
+		}
+		.swiper-controls {
+			.swiper-button {
+				&.swiper-button-prev {
+					left: -5%;
+					@include mixin.mq-max(lg) {
+						left: -10px;
+					}
+				}
+				&.swiper-button-next {
+					right: -5%;
+					@include mixin.mq-max(lg) {
+						right: -10px;
+					}
+				}
+			}
+			.swiper-pagination {
+				bottom: -15px;
+			}
+		}
+	}
+}

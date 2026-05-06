@@ -1,0 +1,524 @@
+<?php
+
+namespace WP_CLI\SiteHealth;
+
+use WP_CLI;
+use WP_CLI\Formatter;
+use WP_CLI\Utils;
+use WP_CLI_Command;
+use WP_Debug_Data;
+use WP_Site_Health;
+
+/**
+ * Manage Site Health
+ *
+ * @package wp-cli
+ */
+class SiteHealthCommand extends WP_CLI_Command {
+
+	/**
+	 * @var WP_Site_Health $instance Instance of WP_Site_Health class.
+	 */
+	private $instance;
+
+	/**
+	 * @var array<string, array{label: string, description: string, show_count: bool, private: bool, fields: array<string, array{label: string, value: mixed, debug: string, private: bool}>}>  $info Debug info.
+	 */
+	private $info;
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		if ( ! class_exists( 'WP_Site_Health' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/class-wp-site-health.php';
+		}
+
+		if ( ! class_exists( 'WP_Debug_Data' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
+		}
+
+		// @phpstan-ignore assign.propertyType
+		$this->instance = WP_Site_Health::get_instance();
+		$this->info     = WP_Debug_Data::debug_data();
+	}
+
+	/**
+	 * Run site health checks.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--<field>=<value>]
+	 * : Filter results based on the value of a field.
+	 *
+	 * [--fields=<fields>]
+	 * : Limit the output to specific fields.
+	 *
+	 * [--format=<format>]
+	 * : Render output in a particular format.
+	 * ---
+	 * default: table
+	 * options:
+	 *   - table
+	 *   - csv
+	 *   - json
+	 *   - yaml
+	 * ---
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # Run site health checks.
+	 *     $ wp site-health check
+	 *     +-------------------+-------------+-------------+----------------------------------------------------------+
+	 *     | check             | type        | status      | label                                                    |
+	 *     +-------------------+-------------+-------------+----------------------------------------------------------+
+	 *     | WordPress Version | Performance | good        | Your version of WordPress (6.5.2) is up to date          |
+	 *     | Plugin Versions   | Security    | recommended | You should remove inactive plugins                       |
+	 *     | Theme Versions    | Security    | recommended | You should remove inactive themes                        |
+	 *     | PHP Version       | Performance | good        | Your site is running the current version of PHP (8.2.18) |
+	 *
+	 * @param string[]                                               $args       Positional arguments. Unused.
+	 * @param array{field?: string, fields?: string, format: string} $assoc_args Associative arguments.
+	 * @return void
+	 */
+	public function check( $args, $assoc_args ) {
+		$fields = array(
+			'check',
+			'type',
+			'status',
+			'label',
+		);
+
+		$checks  = $this->get_checks();
+		$results = $this->run_checks( $checks );
+
+		foreach ( $results as $key => &$item ) {
+
+			foreach ( $fields as $field ) {
+				if ( ! array_key_exists( $field, $assoc_args ) ) {
+					continue;
+				}
+
+				// This can be either a value to filter by or a comma-separated list of values.
+				// Also, it is not forbidden for a value to contain a comma (in which case we can filter only by one).
+				$field_filter = $assoc_args[ $field ];
+				if (
+					$item[ $field ] !== $field_filter
+					&& ! in_array( $item[ $field ], array_map( 'trim', explode( ',', $field_filter ) ), true )
+				) {
+					unset( $results[ $key ] );
+				}
+			}
+		}
+
+		$formatter = new Formatter( $assoc_args, $fields );
+		$formatter->display_items( $results );
+	}
+
+	/**
+	 * Check site health status.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # Check site health status.
+	 *     $ wp site-health status
+	 *     good
+	 *
+	 * @return void
+	 */
+	public function status() {
+		$site_status = 'good';
+
+		$checks = $this->get_checks();
+
+		$results = $this->run_checks( $checks );
+
+		$count_details = $this->get_status_count_details( $results );
+
+		if ( $count_details['total'] > 0 ) {
+			if ( $count_details['critical'] > 1 ) {
+				$site_status = 'critical';
+			} else {
+				$good_percent = ( $count_details['good'] * 100 ) / $count_details['total'];
+
+				if ( $good_percent < 80 ) {
+					$site_status = 'recommended';
+				}
+			}
+		}
+
+		WP_CLI::line( $site_status );
+	}
+
+	/**
+	 * List site health info sections.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--fields=<fields>]
+	 * : Limit the output to specific fields.
+	 *
+	 * [--format=<format>]
+	 * : Render output in a particular format.
+	 * ---
+	 * default: table
+	 * options:
+	 *   - table
+	 *   - csv
+	 *   - json
+	 *   - yaml
+	 * ---
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # List site health info sections.
+	 *     $ wp site-health list-info-sections
+	 *     +------------------------+---------------------+
+	 *     | label                  | section             |
+	 *     +------------------------+---------------------+
+	 *     | WordPress              | wp-core             |
+	 *     | Directories and Sizes  | wp-paths-sizes      |
+	 *     | Drop-ins               | wp-dropins          |
+	 *     | Active Theme           | wp-active-theme     |
+	 *     | Parent Theme           | wp-parent-theme     |
+	 *     | Inactive Themes        | wp-themes-inactive  |
+	 *     | Must Use Plugins       | wp-mu-plugins       |
+	 *     | Active Plugins         | wp-plugins-active   |
+	 *     | Inactive Plugins       | wp-plugins-inactive |
+	 *     | Media Handling         | wp-media            |
+	 *     | Server                 | wp-server           |
+	 *     | Database               | wp-database         |
+	 *     | WordPress Constants    | wp-constants        |
+	 *     | Filesystem Permissions | wp-filesystem       |
+	 *     +------------------------+---------------------+
+	 *
+	 * @subcommand list-info-sections
+	 *
+	 * @param string[]                               $args       Positional arguments. Unused.
+	 * @param array{fields?: string, format: string} $assoc_args Associative arguments.
+	 * @return void
+	 */
+	public function list_info_sections( $args, $assoc_args ) {
+		$fields = array(
+			'label',
+			'section',
+		);
+
+		$sections = $this->get_sections();
+
+		$formatter = new Formatter( $assoc_args, $fields );
+		$formatter->display_items( $sections );
+	}
+
+	/**
+	 * Displays site health info.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [<section>]
+	 * : Section slug.
+	 *
+	 * [--all]
+	 * : Displays info for all sections.
+	 *
+	 * [--fields=<fields>]
+	 * : Limit the output to specific fields.
+	 *
+	 * [--format=<format>]
+	 * : Render output in a particular format.
+	 * ---
+	 * default: table
+	 * options:
+	 *   - table
+	 *   - csv
+	 *   - json
+	 *   - yaml
+	 * ---
+	 *
+	 * [--private]
+	 * : Display private fields. Disabled by default.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # List site health info.
+	 *     $ wp site-health info wp-constants
+	 *     +---------------------+---------------------+-----------+-----------+
+	 *     | field               | label               | value     | debug     |
+	 *     +---------------------+---------------------+-----------+-----------+
+	 *     | WP_HOME             | WP_HOME             | Undefined | undefined |
+	 *     | WP_SITEURL          | WP_SITEURL          | Undefined | undefined |
+	 *     | WP_MEMORY_LIMIT     | WP_MEMORY_LIMIT     | 40M       |           |
+	 *     | WP_MAX_MEMORY_LIMIT | WP_MAX_MEMORY_LIMIT | 256M      |           |
+	 *
+	 * @param array{1: string}                                                   $args       Section slug.
+	 * @param array{all?: bool, fields?: string, format: string, private?: bool} $assoc_args Associative arguments.
+	 * @return void
+	 */
+	public function info( $args, $assoc_args ) {
+		$section = reset( $args );
+
+		$all = Utils\get_flag_value( $assoc_args, 'all', false );
+
+		if ( ( empty( $section ) && ! $all ) || ( ! empty( $section ) && $all ) ) {
+			WP_CLI::error( 'Please specify a section, or use the --all flag.' );
+		}
+
+		$private = Utils\get_flag_value( $assoc_args, 'private', false );
+
+		$default_fields = [ 'field', 'label', 'value', 'debug' ];
+
+		if ( $private ) {
+			$default_fields = [ 'field', 'private', 'label', 'value', 'debug' ];
+		}
+
+		if ( $all ) {
+			$all_sections = $this->get_sections();
+
+			$sections = wp_list_pluck( $all_sections, 'section' );
+
+			$details = [];
+
+			foreach ( $sections as $section ) {
+				$details = array_merge( $details, $this->get_section_info( $section ) );
+			}
+		} else {
+			$this->validate_section( $section );
+			$details = $this->get_section_info( $section );
+		}
+
+		if ( ! $private ) {
+			$details = wp_list_filter( $details, [ 'private' => false ] );
+		}
+
+		if ( empty( $assoc_args['fields'] ) ) {
+			$assoc_args['fields'] = $default_fields;
+		}
+
+		$formatter = new Formatter( $assoc_args, $default_fields );
+		$formatter->display_items( $details );
+	}
+
+	/**
+	 * Returns info sections.
+	 *
+	 * @return array<int, array{label: string, section: string}> Info sections.
+	 */
+	private function get_sections() {
+		$sections = [];
+
+		foreach ( $this->info as $info_key => $info_item ) {
+			$sections[] = [
+				'label'   => $info_item['label'],
+				'section' => $info_key,
+			];
+		}
+
+		return $sections;
+	}
+
+	/**
+	 * Returns debug info of the section.
+	 *
+	 * @param string $section Section slug.
+	 * @return array<int, array{field: string, section: string, label: string, value: string, debug: string|null, private: bool, value?: float, debug?: bool}> Info details.
+	 */
+	private function get_section_info( $section ) {
+		$details = [];
+
+		if ( ! isset( $this->info[ $section ] ) ) {
+			return $details;
+		}
+
+		if ( 'wp-paths-sizes' === $section ) {
+			// @phpstan-ignore staticMethod.deprecated
+			$sizes_data = WP_Debug_Data::get_sizes();
+		}
+
+		foreach ( $this->info[ $section ]['fields'] as $field_key => $field ) {
+			$item = [];
+
+			$item['field']   = $field_key;
+			$item['section'] = $section;
+			$item['label']   = $field['label'];
+			$item['value']   = $field['value'];
+			$item['debug']   = isset( $field['debug'] ) ? $field['debug'] : null;
+			$item['private'] = isset( $field['private'] ) ? (bool) $field['private'] : false;
+
+			if ( 'wp-paths-sizes' === $section ) {
+				if ( isset( $sizes_data[ $field_key ]['size'] ) ) {
+					$item['value'] = $sizes_data[ $field_key ]['size'];
+				}
+
+				if ( isset( $sizes_data[ $field_key ]['debug'] ) ) {
+					$item['debug'] = $sizes_data[ $field_key ]['debug'];
+				}
+			}
+
+			$details[] = $item;
+		}
+
+		return $details;
+	}
+
+	/**
+	 * Returns check results.
+	 *
+	 * @param array<int, array{label: string, test: string, check_type: 'direct'|'async'}> $checks Checks to run.
+	 * @return array<int, array{check: string, status: string, label: string, test: string, description: string, type: string}> Check results.
+	 */
+	private function run_checks( $checks ) {
+		$results = [];
+
+		if ( ! empty( $checks ) ) {
+
+			foreach ( $checks as $check ) {
+				$result = [
+					'check'       => $check['label'],
+					'status'      => '',
+					'label'       => '',
+					'test'        => '',
+					'description' => '',
+					'type'        => '',
+				];
+
+				if ( 'direct' === $check['check_type'] ) {
+					if ( is_string( $check['test'] ) ) {
+						$test_function = sprintf( 'get_test_%s', $check['test'] );
+
+						if ( method_exists( $this->instance, $test_function ) && is_callable( array( $this->instance, $test_function ) ) ) {
+							$test_result = $this->instance->$test_function();
+
+							$result = array_merge(
+								$result,
+								array(
+									'status'      => $test_result['status'],
+									'label'       => $test_result['label'],
+									'test'        => $test_result['test'],
+									'description' => Utils\strip_tags( $test_result['description'] ),
+									'type'        => $test_result['badge']['label'],
+								)
+							);
+						}
+					} elseif ( is_callable( $check['test'] ) ) {
+						/**
+						 * @phpstan-var array{label: string, status: string, badge: array{label: string, color: string}, description: string, actions: string, test: string} $test_result
+						 */
+						$test_result = call_user_func( $check['test'] );
+
+						$result = array_merge(
+							$result,
+							array(
+								'status'      => $test_result['status'],
+								'label'       => $test_result['label'],
+								'test'        => $test_result['test'],
+								'description' => Utils\strip_tags( $test_result['description'] ),
+								'type'        => $test_result['badge']['label'],
+							)
+						);
+					}
+				} elseif ( 'async' === $check['check_type'] ) {
+
+					if ( isset( $check['async_direct_test'] ) && is_callable( $check['async_direct_test'] ) ) {
+							/**
+							 * @phpstan-var array{label: string, status: string, badge: array{label: string, color: string}, description: string, actions: string, test: string} $test_result
+							 */
+							$test_result = call_user_func( $check['async_direct_test'] );
+
+							$result = array_merge(
+								$result,
+								array(
+									'status'      => $test_result['status'],
+									'label'       => $test_result['label'],
+									'test'        => $test_result['test'],
+									'description' => Utils\strip_tags( $test_result['description'] ),
+									'type'        => $test_result['badge']['label'],
+								)
+							);
+					}
+
+					if ( false !== strpos( $check['test'], 'authorization-header' ) ) {
+						$test_result = $this->instance->get_test_authorization_header();
+
+						$result = array_merge(
+							$result,
+							array(
+								'status'      => $test_result['status'],
+								'label'       => $test_result['label'],
+								'test'        => $test_result['test'],
+								'description' => Utils\strip_tags( $test_result['description'] ),
+								'type'        => $test_result['badge']['label'],
+							)
+						);
+					}
+				}
+
+				$results[] = $result;
+			}
+		}
+
+		return $results;
+	}
+
+	/**
+	 * Returns list of checks.
+	 *
+	 * @return array<int, array{label: string, test: string, check_type: 'direct'|'async'}> Checks details.
+	 */
+	private function get_checks() {
+		/**
+		 * @phpstan-var array<int, array{label: string, test: string, check_type: 'direct'|'async'}> $checks
+		 */
+		$checks = [];
+
+		/**
+		 * @phpstan-var array{direct: array<string, array{label: string, test: string}>, async: array<string, array{label: string, test: string}>} $all_checks
+		 */
+		$all_checks = WP_Site_Health::get_tests();
+
+		if ( empty( $all_checks ) ) {
+			return $checks;
+		}
+
+		foreach ( $all_checks as $check_type => $check_items ) {
+			foreach ( $check_items as $check_item ) {
+				$checks[] = array_merge( array( 'check_type' => $check_type ), $check_item );
+			}
+		}
+
+		return $checks;
+	}
+
+	/**
+	 * Returns details of status counts.
+	 *
+	 * @param array<int, array{check: string, status: string, label: string, test: string, description: string, type: string}> $results Check results.
+	 * @return array{critical: int, recommended: int, good: int, total: int} Count details.
+	 */
+	private function get_status_count_details( $results ) {
+		$output = [
+			'critical'    => count( wp_list_filter( $results, [ 'status' => 'critical' ] ) ),
+			'recommended' => count( wp_list_filter( $results, [ 'status' => 'recommended' ] ) ),
+			'good'        => count( wp_list_filter( $results, [ 'status' => 'good' ] ) ),
+		];
+
+		$output['total'] = array_sum( $output );
+
+		return $output;
+	}
+
+	/**
+	 * Checks whether a section is a valid section.
+	 *
+	 * @param string $section Section slug.
+	 * @return void
+	 */
+	private function validate_section( $section ) {
+		$all_sections = $this->get_sections();
+
+		$matches = wp_list_filter( $all_sections, [ 'section' => $section ] );
+
+		if ( ! count( $matches ) ) {
+			WP_CLI::error( 'Invalid section.' );
+		}
+	}
+}

@@ -1,0 +1,23 @@
+Options -Indexes
+RewriteEngine On
+
+RewriteBase /hodeco/
+
+RewriteRule ^index\.php$ - [L]
+
+# pass authorization header
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# allow existing files
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# map wp core
+RewriteRule ^wp-admin/(.*) wp/wp-admin/$1 [L]
+RewriteRule ^wp-includes/(.*) wp/wp-includes/$1 [L]
+RewriteRule ^wp-content/(.*) wp/wp-content/$1 [L]
+
+RewriteRule ^(.*\.php)$ wp/$1 [L]
+
+RewriteRule . index.php [L]

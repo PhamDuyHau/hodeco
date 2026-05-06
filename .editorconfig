@@ -1,0 +1,27 @@
+root = true
+
+# Default settings for all files
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = tab
+indent_size = 4
+max_line_length = 200
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Lock files - no final newline needed
+[{package-lock.json,composer.lock,pnpm-lock.yaml,yarn.lock}]
+insert_final_newline = false
+
+# Minified files - skip formatting
+[*.min.*]
+insert_final_newline = false
+
+# Markdown - preserve trailing whitespace (meaningful in MD syntax)
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[{*.php,*.html}]
+max_line_length = 300

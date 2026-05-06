@@ -1,0 +1,173 @@
+/* dropdown/fx-dropdown-menu.scss - Lazy-loaded with fx-dropdown-menu.js */
+/* utils/_variables.scss */
+/* Single source of truth: Tailwind themes.css defines --vars, SCSS references them */
+/* utils/_functions.scss */
+/* dropdown/fx-dropdown-menu.scss - Lazy-loaded with fx-dropdown-menu.js */
+/* utils/_mixins.scss */
+.menu.mobile-menu > li > a {
+  font-weight: 500;
+}
+
+.submenu.menu[aria-hidden=false] {
+  display: block;
+}
+
+.is-dropdown-submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1;
+  min-width: 280px;
+  padding-block: calc(var(--spacing) * 4);
+  padding-inline: calc(var(--spacing) * 3);
+}
+.is-dropdown-submenu.js-dropdown-active {
+  display: block;
+}
+.is-dropdown-submenu > li {
+  width: 100%;
+}
+.is-dropdown-submenu > li a {
+  position: relative;
+  display: flex;
+  padding-inline: calc(var(--spacing) * 3);
+  padding-block: calc(var(--spacing) * 2);
+  border-radius: var(--radius-xl);
+  border: 1px solid transparent;
+}
+
+.is-dropdown-submenu-parent {
+  position: relative;
+}
+.is-dropdown-submenu-parent.is-active:not(.menu-mega) > .menu.submenu {
+  display: block;
+}
+.is-dropdown-submenu-parent.is-active.menu-mega > .menu.submenu {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+.is-dropdown-submenu-parent.opens-right > .is-dropdown-submenu {
+  right: auto;
+  left: 100%;
+}
+.is-dropdown-submenu-parent.opens-left > .is-dropdown-submenu {
+  right: 100%;
+  left: auto;
+}
+.is-dropdown-submenu-parent.is-dropdown-submenu-item > a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  rotate: -90deg;
+  right: calc(var(--spacing) * 3);
+  background-color: var(--text-color);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+          mask-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+  width: 1rem;
+  height: 1rem;
+}
+.is-dropdown-submenu-parent.is-dropdown-submenu-item > a:hover::after {
+  background-color: var(--text-color-1);
+}
+.is-dropdown-submenu-parent.is-dropdown-submenu-item.opens-left > a::after {
+  transform-origin: center;
+  rotate: 90deg;
+}
+.is-dropdown-submenu-parent:hover > a {
+  color: var(--text-color-1);
+}
+:where(.dark, .dark *) .is-dropdown-submenu-parent:hover > a {
+  color: var(--color-white);
+}
+
+.dropdown.menu > li.opens-right > .is-dropdown-submenu {
+  top: 100%;
+  right: auto;
+  left: 0;
+}
+.dropdown.menu > li.opens-left > .is-dropdown-submenu {
+  top: 100%;
+  right: 0;
+  left: auto;
+}
+.dropdown.menu > li.is-dropdown-submenu-parent > a {
+  position: relative;
+  padding-right: calc(var(--spacing) * 5);
+}
+.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+  left: auto;
+  right: 0;
+  margin-top: 0;
+  rotate: 0deg;
+  transition: rotate 0.15s ease-in-out;
+}
+.dropdown.menu > li.is-dropdown-submenu-parent > a:hover::after {
+  transform-origin: center;
+  rotate: 180deg;
+}
+.dropdown.menu > li.menu-mega > ul.submenu {
+  padding-inline: 0;
+}
+.dropdown.menu > li.menu-mega > ul.submenu > li {
+  padding-inline: calc(var(--spacing) * 3);
+}
+.dropdown.menu > li.menu-mega > ul.submenu > li > a::after {
+  display: none;
+}
+.dropdown.menu > li.menu-mega > ul.submenu ul {
+  display: block;
+  position: static;
+  border: none;
+  padding-inline: 0;
+  box-shadow: none;
+  padding-block: 0;
+  min-width: unset;
+}
+.dropdown.menu > li.menu-mega > ul.submenu.js-dropdown-active {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+.dropdown.menu > li.menu-mega.col-2 > ul.submenu {
+  min-width: 560px;
+  left: -280px;
+}
+.dropdown.menu > li.menu-mega.col-2 > ul.submenu > li {
+  width: calc(100% / 2);
+}
+.dropdown.menu > li.menu-mega.col-2 > ul.submenu::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: 1px;
+  left: 50%;
+}
+.dropdown.menu > li.menu-mega.col-3 > ul.submenu {
+  min-width: 840px;
+  left: -420px;
+}
+.dropdown.menu > li.menu-mega.col-3 > ul.submenu > li {
+  width: calc(100% / 3);
+}
+.dropdown.menu > li.menu-mega.col-3 > ul.submenu::before, .dropdown.menu > li.menu-mega.col-3 > ul.submenu::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: 1px;
+}
+.dropdown.menu > li.menu-mega.col-3 > ul.submenu::before {
+  left: 33.3333333333%;
+}
+.dropdown.menu > li.menu-mega.col-3 > ul.submenu::after {
+  right: 33.3333333333%;
+}

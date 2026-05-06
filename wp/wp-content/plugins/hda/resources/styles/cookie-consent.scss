@@ -1,0 +1,72 @@
+/** Cookie Consent Banner */
+.hda-cookie-consent {
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 99999;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	padding: 16px 24px;
+	background: rgba(30, 30, 30, 0.97);
+	color: #e0e0e0;
+	font-size: 14px;
+	line-height: 1.5;
+	backdrop-filter: blur(8px);
+	box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
+
+	&[data-position='top'] {
+		top: 0;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+	}
+
+	&[data-position='bottom'] {
+		bottom: 0;
+	}
+
+	a {
+		color: #90caf9;
+		text-decoration: underline;
+	}
+}
+
+.hda-cc-text {
+	flex: 1;
+	min-width: 200px;
+}
+
+.hda-cc-actions {
+	display: flex;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.hda-cc-btn {
+	padding: 8px 20px;
+	border: none;
+	border-radius: 4px;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: opacity 0.2s;
+}
+
+.hda-cc-accept {
+	background: #4caf50;
+	color: #ffffff;
+}
+
+.hda-cc-dismiss {
+	background: transparent;
+	color: #aaaaaa;
+	border: 1px solid #555555;
+}
+
+@media (max-width: 640px) {
+	.hda-cookie-consent {
+		flex-direction: column;
+		text-align: center;
+		padding: 14px 16px;
+	}
+}

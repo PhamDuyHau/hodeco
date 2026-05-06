@@ -1,0 +1,153 @@
+/* partials/_footer.scss */
+
+@use '../utils/variables' as vars;
+@use '../utils/functions' as func;
+@use '../utils/mixins' as mixin;
+
+// ============================================================================
+// FOOTER STYLES
+#before-footer {
+	background: linear-gradient(90deg, #ca8c1c 0%, #82590f 100%);
+}
+#footer-columns {
+	.u-container {
+		&::before {
+			content: '';
+			position: absolute;
+			top: 48%;
+			left: 56%;
+			transform: translate(-50%, -50%);
+			width: 45%;
+			height: 100%;
+			background-image: url('../../img/img-goddess-of-justice.png');
+			background-repeat: no-repeat;
+			background-size: cover;
+			z-index: -1;
+			@include mixin.mq-max(lg) {
+				left: 50%;
+				top: 50%;
+			}
+			@include mixin.mq-max(md) {
+				width: 80%;
+				background-size: contain;
+			}
+		}
+		.footer-main {
+			.col-form {
+				.site-logo {
+					img {
+						margin: 0 auto;
+						height: 110px;
+						object-fit: contain;
+						@include mixin.mq-max(lg) {
+							height: 80px;
+						}
+					}
+				}
+				form {
+					position: relative;
+					input {
+						width: 100%;
+						height: 56px;
+						padding: 8px 12px;
+						border: 1px solid vars.$color-title;
+						border-radius: 8px;
+						&:focus {
+							outline: none;
+							box-shadow: none;
+						}
+					}
+					.form-submit {
+						border-radius: 4px;
+						background-color: vars.$color-secondary;
+						position: absolute;
+						top: 10px;
+						right: 6px;
+						cursor: pointer;
+						transition: all 0.3s;
+						@include mixin.box(65, 36);
+						@include mixin.flex-center;
+						br {
+							display: none;
+						}
+						input {
+							background-color: transparent;
+							color: #ffffff;
+							height: 40px;
+							padding: 0;
+							position: absolute;
+							left: 0;
+							opacity: 0;
+							cursor: pointer;
+						}
+						svg {
+							fill: vars.$white;
+							@include mixin.box(18);
+						}
+						.wpcf7-spinner {
+							position: absolute;
+							margin: 0;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
+						}
+					}
+					.wpcf7-not-valid-tip {
+						padding: 10px 0 0 5px;
+					}
+					.wpcf7-response-output {
+						margin: 0;
+						border-radius: 4px;
+					}
+				}
+			}
+			.col-menu {
+				.footer-menu {
+					li {
+						margin-bottom: 10px;
+						&:last-child {
+							margin-bottom: 0;
+						}
+						a {
+							color: #362705b2;
+							&:hover {
+								color: vars.$color-primary;
+							}
+						}
+					}
+				}
+			}
+		}
+		.footer-bottom {
+			.col-social {
+				.social-menu {
+					li {
+						a {
+							@include mixin.flex-center;
+							svg {
+								fill: vars.$color-secondary;
+								@include mixin.box(26);
+								@include mixin.mq-max(md) {
+									@include mixin.box(22);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// SEO FOOTER
+// ============================================================================
+
+// ============================================================================
+// FOOTER MENU
+// ============================================================================
+
+// ============================================================================
+// NEWSLETTER FOOTER
+// ============================================================================

@@ -1,0 +1,21 @@
+/**
+ * Counter FX Styles
+ * Ensures symbol stability during counter animation
+ */
+[data-fx-counter] .counter {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  display: inline-block;
+  min-width: 1ch;
+  text-align: right;
+}
+[data-fx-counter] .symbol {
+  display: inline-block;
+  min-width: 0.8em;
+  text-align: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+[data-fx-counter].is-counting .counter {
+  min-width: 2ch;
+}

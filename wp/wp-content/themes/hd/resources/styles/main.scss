@@ -1,0 +1,14 @@
+/* main.scss */
+/* Base styles for all pages - includes partials (base, header, footer) */
+
+@use 'utils/variables' as vars;
+@use 'utils/functions' as func;
+@use 'utils/mixins' as mixin;
+
+@use 'partials';
+@include mixin.font-face('DFVN-Boheme-Floral', normal, 400, 'DFVN-Boheme-Floral');
+
+// ============================================================================
+// COMPONENTS - Used on ALL pages
+
+// ============================================================================

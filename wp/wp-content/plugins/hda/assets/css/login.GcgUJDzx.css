@@ -1,0 +1,88 @@
+body.login {
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 100%;
+  height: auto;
+}
+body.login::after, body.login::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+body.login .language-switcher {
+  position: relative;
+  z-index: 99;
+}
+body.login form.shake + #nav {
+  animation: shake 0.2s cubic-bezier(0.19, 0.49, 0.38, 0.79) both;
+  animation-iteration-count: 3;
+  transform: translateX(0);
+}
+
+#login {
+  position: relative;
+  z-index: 99;
+}
+#login h1 a {
+  width: auto;
+  max-width: 100%;
+  background-position: center center;
+  /* height: 70px;*/
+  background-size: contain;
+  /*margin-bottom: 20px;*/
+}
+#login h1 a:focus {
+  box-shadow: none;
+}
+#login :where(.privacy-policy-link) {
+  display: none;
+}
+#login {
+  /* login form */
+}
+#login .otp-loginform input[type=submit] {
+  width: 100%;
+  height: 34px;
+}
+#login .otp-loginform #rememberme {
+  display: none !important;
+}
+#login {
+  /* OTP form */
+}
+#login .otp-prompt {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+#login .otp-help {
+  margin-bottom: 1rem;
+}
+#login p.extra label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+#login p.extra #countdown {
+  font-weight: 400;
+  font-size: 14px;
+}
+#login .input.authcode {
+  letter-spacing: 0.3em;
+  margin-right: 0;
+  font-size: 20px;
+  appearance: none;
+  padding-inline: 12px;
+  padding-top: 0;
+}
+#login .input.authcode::-webkit-inner-spin-button, #login .input.authcode::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#login .input.authcode::placeholder {
+  opacity: 0.5;
+}

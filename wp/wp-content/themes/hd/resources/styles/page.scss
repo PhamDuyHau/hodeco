@@ -1,0 +1,473 @@
+/* page.scss */
+/* Non-home pages styles - load with main.scss for inner pages */
+
+@use 'utils/variables' as vars;
+@use 'utils/functions' as func;
+@use 'utils/mixins' as mixin;
+
+// ============================================================================
+// BREADCRUMBS
+.section-breadcrumb {
+	&.has-background {
+		max-height: 400px;
+		@include mixin.mq-max(md) {
+			min-height: 250px;
+		}
+		@include mixin.mq-max(sm) {
+			min-height: 200px;
+		}
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #00000066;
+		}
+		.breadcrumb-bg {
+			max-height: 400px;
+			@include mixin.mq-max(md) {
+				min-height: 250px;
+			}
+			@include mixin.mq-max(sm) {
+				min-height: 200px;
+			}
+			img {
+				max-height: 400px;
+				height: 100%;
+				object-fit: cover;
+				@include mixin.mq-max(md) {
+					min-height: 250px;
+				}
+				@include mixin.mq-max(sm) {
+					min-height: 200px;
+				}
+			}
+		}
+		.breadcrumb-box {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 100%;
+			z-index: 1;
+			#breadcrumbs {
+				justify-content: center;
+				li {
+					color: vars.$white;
+					font-weight: 600;
+					position: relative;
+					text-align: center;
+					&::after {
+						content: '/';
+						display: inline-block;
+						font-size: 16px;
+						color: vars.$white;
+						transform: translateX(8px);
+					}
+					&.current {
+						font-weight: 400;
+						color: #ededed;
+						&::after {
+							content: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// SOCIAL ICON
+.social-menu {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	li {
+		a {
+			background-color: #f6f6f6;
+			border-radius: 50%;
+			transition: all 0.3s;
+			transform: translateY(0);
+			@include mixin.box(32);
+			@include mixin.flex-center;
+			&:hover {
+				transform: translateY(-2px);
+			}
+			svg {
+				@include mixin.box(16);
+			}
+		}
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// FIXED CONTENT BOTTOM
+.sc-fixed-info {
+	.site-logo {
+		padding-top: 10px;
+		margin-bottom: 20px;
+		.logo {
+			display: block;
+			width: fit-content;
+			margin: 0 auto;
+			img {
+				max-width: 500px;
+				height: 130px;
+				object-fit: contain;
+				@include mixin.mq-max(lg) {
+					width: 100%;
+					height: 100px;
+				}
+				@include mixin.mq-max(md) {
+					height: 80px;
+				}
+				@include mixin.mq-max(sm) {
+					height: 60px;
+				}
+			}
+		}
+	}
+	.group-btn {
+		a {
+			&::before {
+				-webkit-mask:
+					linear-gradient(#fff 0 0) content-box,
+					linear-gradient(#fff 0 0);
+				-webkit-mask-composite: xor;
+			}
+		}
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// SOCIAL SHARE
+.social-share {
+	.share-actions {
+		gap: 10px;
+		li {
+			button {
+				border-radius: 4px;
+				border: 1px solid #ececec;
+				display: flex !important;
+				@include mixin.box(32);
+				@include mixin.flex-center;
+				.share-icon {
+					@include mixin.box(18);
+				}
+			}
+		}
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// POPUP
+.popup-content {
+	.inner {
+		form {
+			position: relative;
+			input,
+			textarea {
+				width: 100%;
+				height: 38px;
+				padding: 6px 12px;
+				border-radius: 4px;
+				background-color: transparent;
+				border: 1px solid #d0d0d0;
+				margin-bottom: 14px;
+			}
+			textarea {
+				height: 80px;
+			}
+			br {
+				display: none;
+			}
+			input[type='submit'] {
+				border: none;
+				height: 42px;
+				background: linear-gradient(90deg, #ca8c1c 0%, #82590f 100%);
+				color: vars.$white;
+				font-weight: 600;
+				cursor: pointer;
+				margin-bottom: 0;
+			}
+			.wpcf7-spinner {
+				position: absolute;
+				bottom: 10px;
+				left: 50%;
+				margin: 0;
+				transform: translateX(-50%);
+			}
+			.wpcf7-not-valid-tip {
+				font-size: 15px;
+				transform: translateY(-7px);
+			}
+			.wpcf7-response-output {
+				margin: 10px 0 0;
+				font-weight: 600;
+			}
+		}
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// TABLE
+table {
+	border-collapse: collapse;
+	margin-bottom: 16px;
+	th,
+	td {
+		padding: 8px 12px;
+		border: 1px solid #ccc;
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// FORM
+form {
+	position: relative;
+}
+// ============================================================================
+
+// ============================================================================
+// SIDEBAR
+.sidebar {
+	.heading-title {
+		&::before {
+			content: none !important;
+		}
+	}
+	.sidebar-form {
+		.desc {
+			a {
+				color: vars.$color-primary;
+			}
+		}
+		form {
+			br {
+				display: none;
+			}
+			p {
+				margin-bottom: 0;
+			}
+			input,
+			textarea {
+				width: 100%;
+				height: 40px;
+				border: 1px solid #d0d0d0;
+				border-radius: 4px;
+				margin-bottom: 10px;
+				&:focus {
+					box-shadow: 0px 0px 0px 1px vars.$color-title;
+				}
+			}
+			textarea {
+				height: 60px;
+			}
+			input[type='submit'] {
+				height: 42px;
+				background: linear-gradient(90deg, #ca8c1c 0%, #82590f 100%);
+				color: vars.$white;
+				font-weight: 600;
+				margin-bottom: 0;
+				&:focus {
+					box-shadow: none;
+				}
+			}
+			.wpcf7-spinner {
+				margin: 0;
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				bottom: 9px;
+			}
+			.wpcf7-not-valid-tip {
+				font-size: 15px;
+				transform: translateY(-5px);
+			}
+			.wpcf7-response-output {
+				font-size: 15px;
+				margin: 10px 0 0;
+			}
+		}
+	}
+	.sidebar-posts {
+		.post-list {
+			.item {
+				flex-direction: row;
+				gap: 0;
+				border-bottom: 1px solid #0000001a;
+				padding-bottom: 16px;
+				margin-bottom: 16px;
+				&:last-child {
+					margin-bottom: 0;
+					padding-bottom: 0;
+					border-bottom: none;
+				}
+				@include mixin.mq-max(md) {
+					align-items: center;
+				}
+				.c-cover {
+					width: 40%;
+				}
+				.c-content {
+					width: 60%;
+					padding-left: 12px;
+					gap: 4px;
+					.title {
+						font-size: 13px;
+						line-height: 1.4;
+						@include mixin.line-clamp(3);
+					}
+					.c-terms {
+						a {
+							font-size: 12px;
+						}
+						.c-date {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// PAGINATION
+.nav-pagination {
+	ul.pagination {
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// PAGE CEO
+.page-ceo {
+	.content-author {
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: vars.$font-body;
+			font-weight: 500;
+			color: vars.$color-title;
+			margin-bottom: 16px;
+		}
+		h2 {
+			color: vars.$color-secondary;
+			@include mixin.clamp-font-size(22px, 26px);
+		}
+		h3 {
+			@include mixin.clamp-font-size(20px, 22px);
+		}
+		h4 {
+			@include mixin.clamp-font-size(18px, 20px);
+		}
+		h5 {
+			@include mixin.clamp-font-size(16px, 18px);
+		}
+		h6 {
+			@include mixin.clamp-font-size(14px, 16px);
+		}
+		ol,
+		ul {
+			list-style: revert;
+			padding-left: 20px;
+			margin-bottom: 16px;
+			li {
+				margin-bottom: 5px;
+				&:last-child {
+					margin-bottom: 0;
+				}
+				ul,
+				ol {
+					margin-top: 5px;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
+// ============================================================================
+
+// ============================================================================
+// GALLERY
+// ============================================================================
+
+[id^='gallery-'] {
+	$default-gap: 12;
+	$md-gap: 24;
+	display: flex;
+	flex-flow: row wrap;
+	margin-top: 24px;
+	margin-bottom: 24px;
+	@include mixin.media-css(gap, $default-gap, false, $md-gap, false, false, false);
+	& > .gallery-item {
+		padding: 0;
+		margin: 0;
+		max-width: 100%;
+		flex: 1 0 auto;
+
+		.gallery-icon {
+			height: 100%;
+		}
+
+		@include mixin.mq-max(md) {
+			@include mixin.flex-self(1, 1, $default-gap, true);
+		}
+	}
+
+	@for $i from 1 through 9 {
+		&.gallery-columns-#{$i} > .gallery-item {
+			@include mixin.flex-self($i, 1, $md-gap);
+
+			a {
+				display: block;
+				height: 100%;
+			}
+
+			img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+		}
+	}
+}
+
+// ============================================================================
+// SINGULAR (Article pages)
+// ============================================================================
+
+// ============================================================================
+// TABLE OF CONTENTS
+// ============================================================================
+
+// ============================================================================
+// SUGGESTION LIST
+// ============================================================================
+
+// ============================================================================
+// HASHTAG & TERMS LINKS
+// ============================================================================
+
+// ============================================================================
+// AUTHOR BOX
+// ============================================================================
+
+// ============================================================================
+// RELATED POSTS
+// ============================================================================
