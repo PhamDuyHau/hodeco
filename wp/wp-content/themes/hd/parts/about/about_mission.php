@@ -1,8 +1,8 @@
 <?php
-\defined( 'ABSPATH' ) || die;
+\defined('ABSPATH') || die;
 
 $acf_fc_layout = $args['acf_fc_layout'] ?? '';
-if ( ! $acf_fc_layout ) {
+if (! $acf_fc_layout) {
     return;
 }
 
@@ -32,19 +32,20 @@ $content       = $args['content'] ?? '';
             }
             ?>
         </div>
-        <div class="flex flex-col lg:flex-row items-start gap-4 lg:gap-6">
+        <div class="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-6">
             <div class="w-full lg:flex-1">
                 <?php if ($content) : ?>
-                    <div class="desc text-[16px] text-gray-700 leading-relaxed text-justify lg:text-left">
+                    <div class="desc h-full rounded-xl p-6 lg:p-8 text-[16px] text-gray-700 leading-relaxed text-justify lg:text-left
+                                border border-gray-300 shadow-sm bg-orange-50/30">
                         <?php echo wp_kses_post($content); ?>
                     </div>
                 <?php endif; ?>
             </div>
-            
+
             <div class="w-full lg:w-[40%] shrink-0">
                 <?php if ($img_id) : ?>
-                    <div class="rounded-2xl overflow-hidden shadow-sm about-mission-img">
-                        <?= \HD_Helper::attachmentImageHTML($img_id, 'full', ['class' => 'w-full h-auto object-cover']) ?>
+                    <div class="h-full rounded-2xl overflow-hidden shadow-sm about-mission-img">
+                        <?= \HD_Helper::attachmentImageHTML($img_id, 'full', ['class' => 'w-full h-full object-cover']) ?>
                     </div>
                 <?php endif; ?>
             </div>

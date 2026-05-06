@@ -27,16 +27,22 @@ $right_image   = $args['right_image'] ?? '';
             </div>
 
             <div class="content-center pb-5">
-                <?php if ($sub_title) : ?>
-                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-[#ddd] mb-6">
-                        <span class="w-2 h-2 bg-secondary rounded-full"></span>
-                        <span class="text-[14px] font-medium"><?php echo $sub_title; ?></span>
-                    </div>
-                <?php endif; ?>
+            <?php
+            if ($sub_title) {
+                echo '<div class="flex justify-center mb-4">';
+                echo '<h3 class="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-[#808080] font-medium text-[16px] leading-[24px] text-black">';
+                echo '<span class="w-2.5 h-2.5 bg-secondary rounded-full shrink-0"></span>';
+                echo '<span class="capitalize">' . $sub_title . '</span>';
+                echo '</h3>';
+                echo '</div>';
+            }
 
-                <?php if ($heading_title) : ?>
-                    <h2 class="text-[28px] lg:text-[40px] font-bold text-[#333] leading-tight mb-6"><?php echo $heading_title; ?></h2>
-                <?php endif; ?>
+            if ($heading_title) {
+                echo '<h2 class="text-[32px] lg:text-[44px] font-semibold text-[#333333] text-center mt-4">';
+                echo $heading_title;
+                echo '</h2>';
+            }
+            ?>
 
                 <?php if ($content) : ?>
                     <div class="desc text-[15px] text-[#666] leading-relaxed">

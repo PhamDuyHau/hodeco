@@ -7,52 +7,63 @@
 @use 'partials';
 
 // ============================================================================
-.heading-title {
-	&::before,
-	&::after {
-		background-image: url('../../resources/img/line-title-right-full.svg');
-	}
-	&::before {
-		transform: rotate(180deg);
-	}
+.core-icon {
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    border-top-left-radius: 50%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .3s;
 }
-// SECTION ABOUT
-.sc-about {
-	.desc {
-		strong {
-			color: vars.$color-secondary;
-		}
-	}
+
+/* corner curve illusion */
+.core-icon::before,
+.core-icon::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-bottom-right-radius: 20px;
+    box-shadow: 6px 6px 0 6px #fff;
 }
-// SECTION TEAM
-.sc-team {
-	.list-team {
-		min-height: 510px;
-		@include mixin.mq-min(lg) {
-			min-height: 520px;
-		}
-		.swiper-wrapper {
-			.swiper-slide {
-			}
-		}
-		.swiper-controls {
-			.swiper-button {
-				&.swiper-button-prev {
-					left: -5%;
-					@include mixin.mq-max(lg) {
-						left: -10px;
-					}
-				}
-				&.swiper-button-next {
-					right: -5%;
-					@include mixin.mq-max(lg) {
-						right: -10px;
-					}
-				}
-			}
-			.swiper-pagination {
-				bottom: -15px;
-			}
-		}
-	}
+
+.core-icon::before {
+    bottom: 6px;
+    left: -20px;
 }
+
+.core-icon::after {
+    top: -20px;
+    right: 6px;
+}
+
+.core-icon .icon-inner {
+    width: 65px;
+    height: 65px;
+    background: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+
+.core-icon .icon-inner img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    transition: .3s;
+    filter: brightness(0) invert(1);
+}
+
+.group:hover .core-icon .icon-inner img {
+    transform: scale(1.1);
+}
+

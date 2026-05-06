@@ -45,6 +45,8 @@ $re_com        = $args['re_com'] ?? [];
                     $data = [
                         'slidesPerView' => 2,
                         'spaceBetween'  => 20,
+                        'navigation'    => true,
+                        'pagination'    => true,
                         'grid' => [ 'rows' => 2, 'fill' => 'row' ],
                         'loop' => false,
                         'breakpoints' => [

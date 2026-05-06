@@ -1,14 +1,14 @@
-/* main.scss */
-/* Base styles for all pages - includes partials (base, header, footer) */
+/* about.scss */
+/* About specific styles */
 /* utils/_variables.scss */
 /* Single source of truth: Tailwind themes.css defines --vars, SCSS references them */
 /* utils/_functions.scss */
-/* main.scss */
-/* Base styles for all pages - includes partials (base, header, footer) */
+/* about.scss */
+/* About specific styles */
 /* utils/_mixins.scss */
 /* partials/_index.scss */
-/* main.scss */
-/* Base styles for all pages - includes partials (base, header, footer) */
+/* about.scss */
+/* About specific styles */
 /* partials/_base.scss */
 img:not([src]),
 img[src=""] {
@@ -180,8 +180,8 @@ img[src=""] {
   transform: translateY(var(--translateY, 0px)) rotate(var(--rotate, 0deg));
 }
 
-/* main.scss */
-/* Base styles for all pages - includes partials (base, header, footer) */
+/* about.scss */
+/* About specific styles */
 /* partials/_header.scss */
 .site-header {
   position: absolute;
@@ -271,8 +271,8 @@ img[src=""] {
   color: #0E4087;
 }
 
-/* main.scss */
-/* Base styles for all pages - includes partials (base, header, footer) */
+/* about.scss */
+/* About specific styles */
 /* partials/_footer.scss */
 #before-footer {
   background: linear-gradient(90deg, #ca8c1c 0%, #82590f 100%);
@@ -402,10 +402,62 @@ img[src=""] {
   }
 }
 
-@font-face {
-  font-family: "DFVN-Boheme-Floral";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/WOFF2/DFVN-Boheme-Floral.woff2?v=urj46kj") format("woff2"), url("../fonts/DFVN-Boheme-Floral.ttf?v=urj46kj") format("truetype"), url("../fonts/OTF/DFVN-Boheme-Floral.otf?v=urj46kj") format("opentype");
+.core-icon {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-top-left-radius: 50%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+/* corner curve illusion */
+.core-icon::before,
+.core-icon::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-bottom-right-radius: 20px;
+  box-shadow: 6px 6px 0 6px #fff;
+}
+
+.core-icon::before {
+  bottom: 6px;
+  left: -20px;
+}
+
+.core-icon::after {
+  top: -20px;
+  right: 6px;
+}
+
+.core-icon .icon-inner {
+  width: 65px;
+  height: 65px;
+  background: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.core-icon .icon-inner img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: 0.3s;
+  filter: brightness(0) invert(1);
+}
+
+.group:hover .core-icon .icon-inner img {
+  transform: scale(1.1);
 }

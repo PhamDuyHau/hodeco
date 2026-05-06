@@ -1,14 +1,14 @@
-/* about.scss */
-/* About specific styles */
+/* main.scss */
+/* Base styles for all pages - includes partials (base, header, footer) */
 /* utils/_variables.scss */
 /* Single source of truth: Tailwind themes.css defines --vars, SCSS references them */
 /* utils/_functions.scss */
-/* about.scss */
-/* About specific styles */
+/* main.scss */
+/* Base styles for all pages - includes partials (base, header, footer) */
 /* utils/_mixins.scss */
 /* partials/_index.scss */
-/* about.scss */
-/* About specific styles */
+/* main.scss */
+/* Base styles for all pages - includes partials (base, header, footer) */
 /* partials/_base.scss */
 img:not([src]),
 img[src=""] {
@@ -180,8 +180,8 @@ img[src=""] {
   transform: translateY(var(--translateY, 0px)) rotate(var(--rotate, 0deg));
 }
 
-/* about.scss */
-/* About specific styles */
+/* main.scss */
+/* Base styles for all pages - includes partials (base, header, footer) */
 /* partials/_header.scss */
 .site-header {
   position: absolute;
@@ -271,8 +271,8 @@ img[src=""] {
   color: #0E4087;
 }
 
-/* about.scss */
-/* About specific styles */
+/* main.scss */
+/* Base styles for all pages - includes partials (base, header, footer) */
 /* partials/_footer.scss */
 #before-footer {
   background: linear-gradient(90deg, #ca8c1c 0%, #82590f 100%);
@@ -402,41 +402,10 @@ img[src=""] {
   }
 }
 
-.heading-title::before, .heading-title::after {
-  background-image: url("data:image/svg+xml,%3csvg%20width='1089'%20height='6'%20viewBox='0%200%201089%206'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M-2.14577e-06%202.88672L2.88675%205.77347L5.7735%202.88672L2.88675%20-3.26633e-05L-2.14577e-06%202.88672ZM1087.89%203.38672C1088.16%203.38672%201088.39%203.16286%201088.39%202.88672C1088.39%202.61058%201088.16%202.38672%201087.89%202.38672V2.88672V3.38672ZM2.88675%202.88672V3.38672H1087.89V2.88672V2.38672H2.88675V2.88672Z'%20fill='url(%23paint0_linear_68_219)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_68_219'%20x1='2.88675'%20y1='3.38662'%20x2='1087.89'%20y2='3.38662'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23968968'/%3e%3cstop%20offset='1'%20stop-color='%23C4BBA8'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
-}
-.heading-title::before {
-  transform: rotate(180deg);
-}
-
-.sc-about .desc strong {
-  color: #EC2127;
-}
-
-.sc-team .list-team {
-  min-height: 510px;
-}
-@media only screen and (min-width: 64rem) {
-  .sc-team .list-team {
-    min-height: 520px;
-  }
-}
-.sc-team .list-team .swiper-controls .swiper-button.swiper-button-prev {
-  left: -5%;
-}
-@media only screen and (max-width: 63.99875rem) {
-  .sc-team .list-team .swiper-controls .swiper-button.swiper-button-prev {
-    left: -10px;
-  }
-}
-.sc-team .list-team .swiper-controls .swiper-button.swiper-button-next {
-  right: -5%;
-}
-@media only screen and (max-width: 63.99875rem) {
-  .sc-team .list-team .swiper-controls .swiper-button.swiper-button-next {
-    right: -10px;
-  }
-}
-.sc-team .list-team .swiper-controls .swiper-pagination {
-  bottom: -15px;
+@font-face {
+  font-family: "DFVN-Boheme-Floral";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/WOFF2/DFVN-Boheme-Floral.woff2?v=uqkf1tx") format("woff2"), url("../fonts/DFVN-Boheme-Floral.ttf?v=uqkf1tx") format("truetype"), url("../fonts/OTF/DFVN-Boheme-Floral.otf?v=uqkf1tx") format("opentype");
 }
