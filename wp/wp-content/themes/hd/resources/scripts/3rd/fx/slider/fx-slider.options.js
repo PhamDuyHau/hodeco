@@ -45,49 +45,6 @@ const createThumbsSwiper = (el) => {
 };
 
 /**
- *   Bar 
- */
-const moveProgress = (swiper, progress = 0) => {
-	const section = swiper.el.closest('.home-progress-slider');
-	const bar = section.querySelector('.progress-fill');
-	const thumbs = section.querySelectorAll('.thumbs-slider .swiper-slide');
-
-	if (!bar || !thumbs.length) return;
-
-	const current = swiper.realIndex;
-	let next = current + 1;
-	let isLast = false;
-
-	if (next >= thumbs.length) {
-		isLast = true;
-		next = current;
-	}
-
-	const currentEl = thumbs[current];
-	const nextEl = thumbs[next];
-
-	const parentRect = thumbs[0].parentElement.getBoundingClientRect();
-	const currentRect = currentEl.getBoundingClientRect();
-	const nextRect = nextEl.getBoundingClientRect();
-
-	const currentX = currentRect.left - parentRect.left;
-	const nextX = nextRect.left - parentRect.left;
-
-	let x;
-
-	if (isLast) {
-		const wrapper = thumbs[0].parentElement;
-		const maxWidth = wrapper.scrollWidth;
-
-		x = currentX + (maxWidth - currentX) * progress;
-	} else {
-		x = currentX + (nextX - currentX) * progress;
-	}
-
-	bar.style.width = `${x}px`;
-};
-
-/**
  * Build Swiper options
  */
 export const buildSwiperOptions = (options, classes, el) => {

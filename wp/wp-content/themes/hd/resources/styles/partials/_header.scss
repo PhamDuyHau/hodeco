@@ -12,102 +12,211 @@
     left: 0;
     width: 100%;
     z-index: 999;
-
     &.is-sticky {
         position: fixed;
         #inside-header {
-            // Khi sticky thì đổi nền trắng để thấy chữ tối màu (nếu cần) hoặc giữ gradient
-            background: vars.$white; 
             border-bottom: 1px solid rgba(0, 0, 0, 0.12);
             box-shadow: 0 1px 24px 0 rgba(0, 0, 0, 0.06);
-
-            // Đổi màu chữ menu thành màu tối khi nền header thành trắng
-            .cell-menu nav ul li a {
-                color: vars.$color-title; 
-                &::after { background-color: vars.$color-title; } // Mũi tên dropdown
-            }
         }
     }
 }
-
 #inside-header {
-    background: linear-gradient(180deg, #057DCD 0%, rgba(0, 7, 104, 0) 105%);
-    transition: all 0.3s ease;
-
-    .cell-logo .site-logo {
-        position: relative;
-        padding: 5px 0;
-        img { height: 60px; object-fit: contain; }
-    }
-
-    .cell-menu nav ul.dropdown.menu {
-        li {
-            // Xử lý mũi tên dropdown
-            &.is-dropdown-submenu-parent > a::after {
-                right: -5px;
-                background-color: vars.$white;
-            }
-
-            // Link menu chính
-            a {
-                color: vars.$white;
-                position: relative;
-                font-weight: 500;
-                display: flex;
-                align-items: center;
-                font-size: func.fs(16px);
-                transition: all 0.3s;
-                padding: 10px 0;
-
-                // THANH GẠCH CHÂN (::before)
-                &::before {
-                    content: '';
-                    position: absolute;
-                    bottom: -2px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 0;
-                    height: 3px;
-                    border-radius: 6px;
-                    background-color: vars.$color-primary;
-                    transition: width 0.3s ease-in-out;
-                    opacity: 0;
-                    visibility: hidden;
-                }
-
-                // TRẠNG THÁI ACTIVE & HOVER
-                // WordPress dùng class .current-menu-item trên thẻ <li>
-                &:hover,
-                &[aria-current='page'],
-                .current-menu-item &,
-                .current_page_item &,
-                .current-menu-ancestor & { 
-                    color: vars.$color-primary !important;
-                    font-weight: 700;
-                    
-                    &::before {
-                        width: 37px;
-                        opacity: 1;
-                        visibility: visible;
-                    }
-                }
-            }
-
-            // Submenu (Menu con)
-            .is-dropdown-submenu {
-                top: 100%;
-                background: vars.$color-bg-base;
-                border-radius: 6px;
-                padding: 10px;
-                li a {
-                    color: vars.$color-title;
-                    padding: 10px 15px;
-                    &::before { content: none; } // Không gạch chân ở menu con
-                    &:hover { color: vars.$color-primary; }
-                }
-            }
+	background: linear-gradient(180deg, #057DCD 0%, rgba(0, 7, 104, 0) 105%);
+	.cell-logo {
+		.site-logo {
+			position: relative;
+			padding: 5px 0;
+			img {
+				height: 60px;
+				object-fit: contain;
+			}
+		}
+	}
+	.cell-menu {
+		nav {
+			ul.dropdown.menu {
+				li {
+					&.is-dropdown-submenu-parent {
+						a {
+							&::after {
+								right: -5px;
+								background-color: vars.$white;
+							}
+						}
+						.is-dropdown-submenu {
+							top: 100%;
+							right: auto;
+							left: 0;
+							background: vars.$color-bg-base;
+							border-radius: 6px;
+							padding: 10px;
+							li {
+								a {
+									color: vars.$color-title;
+									line-height: 1.4;
+									padding: 10px 15px;
+									border-top: unset;
+									&:hover {
+										color: vars.$color-primary;
+									}
+									&::before {
+										content: none;
+									}
+								}
+							}
+						}
+					}
+					a {
+						color: vars.$white;
+						position: relative;
+						display: inline-block;
+						font-weight: 500;
+						height: 100%;
+						display: flex;
+						align-items: center;
+						font-size: func.fs(16px);
+						transition: all 0.3s;
+						&[aria-current='page'],
+    .current-menu-item &,
+    .current_page_item &,
+    .current-menu-ancestor & { 
+        color: vars.$color-primary !important; // Ép màu primary
+        font-weight: 700;
+        
+        &::before {
+            width: 37px;
+            opacity: 1;
+            visibility: visible;
         }
     }
+
+    // Hiệu ứng Hover
+    &:hover {
+        color: vars.$color-primary;
+        &::before {
+            width: 37px;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+						&::before {
+							content: '';
+							position: absolute;
+							bottom: -5px;
+							left: 50%;
+							transform: translateX(-50%);
+							width: 0;
+							height: 3px;
+							border-radius: 6px;
+							background-color: vars.$color-primary;
+							transition: width 0.3s ease-in-out;
+							opacity: 0;
+							visibility: hidden;
+						}
+						&:hover {
+							color: vars.$color-primary;
+							&::before {
+								width: 37px;
+								opacity: 1;
+								visibility: visible;
+								transition: width 0.3s ease-in-out;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.cell-right {
+		.line {
+			width: 1px;
+			height: 20px;
+			background: rgba(255,255,255,0.4);
+			margin: 0 10px;
+			display: inline-block;
+		}
+		.dropdown-search {
+			@include mixin.mq-max(lg) {
+				display: none;
+			}
+			.dropdown-pane {
+				display: none;
+				&.is-open {
+					display: block;
+					left: 15px !important;
+					right: 15px !important;
+					width: calc(100% - 30px);
+					padding: 0;
+					font-size: 15px;
+					border: none;
+					background: none;
+					.frm-container {
+						position: relative;
+						background-color: vars.$white;
+						border: 1px solid #d9dbf5;
+						box-shadow: 0 6px 15px 0 rgba(64, 79, 104, 0.2);
+						border-radius: 10px;
+						@include mixin.mq-max(md) {
+						}
+						input {
+							width: 100%;
+							height: 50px;
+							padding-left: 50px;
+							border-radius: 10px;
+							border: none;
+							font-weight: 500;
+						}
+
+						button[type='submit'] {
+							position: absolute;
+							top: 50%;
+							transform: translateY(-50%);
+							left: 15px;
+							&::before {
+								content: '';
+							}
+							& > span {
+								display: none;
+							}
+						}
+
+						.trigger-s-close {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+		.header-lang {
+			select {
+				border: 2px solid vars.$white;;
+				border-radius: 50px;
+				font-weight: 500;
+				color: vars.$white;
+				font-size: 15px;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 9l6 6l6-6" fill="none" stroke="%23D9D2C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>');
+				background-repeat: no-repeat;
+				background-size: 16px;
+				background-color: vars.$white;
+				padding: 5px 28px 5px 12px;
+				cursor: pointer;
+				&:focus {
+					outline: none;
+					box-shadow: unset;
+				}
+			}
+			.lang-list {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+		}
+	}
 }
 // ============================================================================
 

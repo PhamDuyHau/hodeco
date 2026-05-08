@@ -12,7 +12,7 @@ $bg_img        = $args['bg_img'] ?? '';
 $re_core       = $args['re_core'] ?? [];
 ?>
 
-<section class="section about-card relative py-10 lg:py-16 bg-white overflow-hidden">
+<section class="section about-card relative py-10 lg:py-16 overflow-hidden">
 
     <?php if ($bg_img) : ?>
         <div class="absolute left-0 top-0 h-full w-[300px] pointer-events-none">
@@ -49,7 +49,7 @@ $re_core       = $args['re_core'] ?? [];
                     $item_content = $item['content'] ?? '';
                     $item_img     = $item['img'] ?? '';
                 ?>
-                    <div class="group relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-22px)] flex flex-col h-[500px] overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
+                    <div class="group relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-22px)] flex flex-col h-[500px] overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:shadow-sm">
                         <div class="relative w-full aspect-[4/5] overflow-hidden">
                             <?php if ($item_img): ?>
                                 <?= wp_get_attachment_image($item_img, 'large', false, [
@@ -65,8 +65,8 @@ $re_core       = $args['re_core'] ?? [];
                                 </div>
                             </div>
                         </div>
-                        <div class="h-40 flex items-center justify-center bg-primary px-4 pt-4 pb-10 transition-colors duration-300 group-hover:bg-primary/90">
-                            <h3 class="text-white font-semibold text-lg lg:text-xl text-center leading-tight">
+                        <div class="h-24 flex  bg-primary px-4 pt-4 transition-colors duration-300 group-hover:bg-primary/90">
+                            <h3 class="text-white font-semibold text-lg text-[24px] text-center leading-tight">
                                 <?= esc_html($item_title) ?>
                             </h3>
                         </div>
