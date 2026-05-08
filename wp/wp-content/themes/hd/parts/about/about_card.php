@@ -35,7 +35,7 @@ $re_core       = $args['re_core'] ?? [];
         }
 
         if ($heading_title) {
-            echo '<h2 class="text-[32px] lg:text-[44px] font-semibold text-[#333333] text-center mt-4">';
+            echo '<h2 class="text-[32px] lg:text-[44px] font-semibold text-[#333333] text-center mt-4 mb-10">';
             echo $heading_title;
             echo '</h2>';
         }

@@ -17,7 +17,6 @@ $sub_title      = $args['sub_title'] ?? '';
     <?php
     if ($bg_img) {
         echo '<div class="absolute top-0 right-0 -z-1 pointer-events-none">';
-        // ĐÃ ĐỔI SANG HD_HELPER
         echo \HD_Helper::attachmentImageHTML($bg_img, 'full', [
             'class' => 'w-full h-full object-contain'
         ]);
